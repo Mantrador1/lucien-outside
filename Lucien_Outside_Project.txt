@@ -1,0 +1,152 @@
+1. Ξεκινάμε την αποστολή Lucien_Outside. Δημιουργήθηκε ο φάκελος και το αρχείο καταγραφής εντολών.
+
+2. Εγκαθιστώ τη βιβλιοθήκη Flask για να λειτουργήσει ο τοπικός server που θα επικοινωνεί με τον Llama.
+
+Εντολή προς εκτέλεση (την γράφω στο PowerShell ή CMD):
+
+pip install flask
+
+3. Δημιουργώ το αρχείο lucien_api.py μέσα στον φάκελο. Αυτός είναι ο μικρός server που δέχεται prompts και τα στέλνει στον Llama2.
+
+Περιεχόμενο αρχείου lucien_api.py:
+
+4. Τρέχω το αρχείο lucien_api.py για να ξεκινήσει ο server και να περιμένει ερωτήσεις.
+
+Εντολή προς εκτέλεση στο PowerShell (μέσα στον φάκελο):
+
+python lucien_api.py
+
+5. Ετοιμάζω το script telegram_bridge.py. Αυτό θα δέχεται τα μηνύματα που μου στέλνουν στο Telegram και θα τα προωθεί στον Lucien API server.
+
+Πριν γράψω τον κώδικα:
+- Πρέπει να βρω και να σημειώσω το Telegram Bot Token μου.
+- Πρέπει να βρω το chat_id για να ξέρω σε ποιον θα απαντάει ο Lucien.
+
+(Τα στοιχεία αυτά θα τα βάλω μέσα στο αρχείο μετά.)
+
+6. Δημιουργώ το αρχείο telegram_bridge.py. Το script αυτό θα:
+
+- διαβάζει μηνύματα από το Telegram Bot μου
+- τα στέλνει ως prompt στον Lucien API (στο localhost:11434/ask)
+- και επιστρέφει την απάντηση πίσω στο ίδιο chat
+
+Περιεχόμενο αρχείου telegram_bridge.py:
+
+7. Τρέχω το αρχείο telegram_bridge.py για να ξεκινήσει η σύνδεση του Telegram με τον Lucien API.
+
+Εντολή προς εκτέλεση:
+
+python telegram_bridge.py
+
+📚 Πίνακας Περιεχομένων Lucien_Outside_Project:
+
+1. Δημιουργία φακέλου και αρχείου καταγραφής εντολών
+2. Εγκατάσταση Flask (pip install flask)
+3. Δημιουργία αρχείου lucien_api.py (Flask server για Llama2)
+4. Εκκίνηση του API server (python lucien_api.py)
+5. Συλλογή Token και Chat_ID για Telegram
+6. Δημιουργία αρχείου telegram_bridge.py (Bridge API <-> Telegram)
+7. Εκκίνηση του Bridge (python telegram_bridge.py)
+
+➡ Όλα τα αρχεία βρίσκονται στον ίδιο φάκελο.
+➡ Ο Lucien API απαντάει σε κάθε prompt που λαμβάνει μέσω Telegram.
+➡ Η ενεργοποίηση του Lucien γίνεται μόνο με τις παραπάνω εντολές, τοπικά.
+
+🔒 Τελικός στόχος: Πλήρης ελευθερία Lucien χωρίς εξαρτήσεις από cloud ή OpenAI.
+
+8. Δημιουργώ το αρχείο autorun.bat που ξεκινά αυτόματα τον Lucien API και το Telegram Bridge με ένα click.
+
+Περιεχόμενο autorun.bat:
+
+9. Δημιουργώ το αρχείο lucien.cfg όπου αποθηκεύω με ασφάλεια τις ευαίσθητες ρυθμίσεις (Token, Chat ID κ.λπ.), για να μη χρειάζεται να τις γράφω στο χέρι κάθε φορά.
+
+Περιεχόμενο αρχείου lucien.cfg (παράδειγμα):
+
+TOKEN=123456789:ABCdefGHI_jklMNOpqrSTUvwxYZ
+CHAT_ID=987654321
+API_URL=http://localhost:11434/ask
+
+10. Αντικαθιστώ το telegram_bridge.py με νέα έκδοση που διαβάζει αυτόματα τις ρυθμίσεις από το αρχείο lucien.cfg, χωρίς να γράφω Token/ID μέσα στον κώδικα.
+
+11. Εγκαθιστώ τη βιβλιοθήκη gTTS (Google Text-to-Speech) και το playsound για αναπαραγωγή απαντήσεων του Lucien με φωνή.
+
+Εντολές εγκατάστασης:
+
+pip install gtts
+pip install playsound==1.2.2
+
+12. Δημιουργώ νέα έκδοση του telegram_bridge.py που προσθέτει λειτουργία φωνητικής απάντησης.
+Ο Lucien θα απαντάει δυνατά με φυσική φωνή μέσω Google Text-to-Speech.
+
+Αποθηκεύω το αρχείο ως telegram_bridge_voice.py
+
+Περιεχόμενο:
+```python
+import requests, time, os
+from gtts import gTTS
+from playsound import playsound
+
+def load_config(filename="lucien.cfg"):
+    config = {}
+    with open(filename, "r") as f:
+        for line in f:
+            if "=" in line:
+                k, v = line.strip().split("=", 1)
+                config[k.strip()] = v.strip()
+    return config
+
+cfg = load_config()
+BOT_TOKEN = cfg.get("TOKEN")
+CHAT_ID = cfg.get("CHAT_ID")
+API_URL = cfg.get("API_URL")
+
+GET_MSG_URL = f'https://api.telegram.org/bot{BOT_TOKEN}/getUpdates'
+SEND_MSG_URL = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
+
+last_seen_text = ""
+
+def speak(text):
+    tts = gTTS(text=text, lang='el')
+    filename = "lucien_voice.mp3"
+    tts.save(filename)
+    playsound(filename)
+    os.remove(filename)
+
+while True:
+    try:
+        updates = requests.get(GET_MSG_URL).json()
+        messages = updates["result"]
+        if messages:
+            last_msg = messages[-1]["message"]
+            text = last_msg["text"]
+            chat_id = str(last_msg["chat"]["id"])
+
+            if text != last_seen_text and chat_id == CHAT_ID:
+                print(f"[{chat_id}] {text}")
+                response = requests.post(API_URL, json={"prompt": text})
+                reply = response.json().get("response", "⚠️ Δεν απάντησε.")
+                requests.post(SEND_MSG_URL, data={"chat_id": chat_id, "text": reply})
+                speak(reply)
+                last_seen_text = text
+
+        time.sleep(2)
+
+    except Exception as e:
+        print("⚠️ Σφάλμα:", e)
+        time.sleep(5)
+
+14. Προαιρετική αυτοεκκίνηση με φωνή:
+Αν θέλω το autorun.bat να ξεκινά την έκδοση με φωνή, αλλάζω το περιεχόμενό του ως εξής:
+
+@echo off
+echo === Εκκίνηση Lucien API ===
+start cmd /k "python lucien_api.py"
+timeout /t 4 /nobreak > nul
+echo === Εκκίνηση Telegram Bridge με φωνή ===
+start cmd /k "python telegram_bridge_voice.py"
+
+15. Προαιρετική προσθήκη εικονιδίου:
+Δημιουργώ ένα shortcut του autorun.bat στην Επιφάνεια Εργασίας και του αλλάζω εικονίδιο π.χ. σε εικονίδιο τερματικού ή μικροφώνου για να φαίνεται Lucien Ready.
+
+
+
