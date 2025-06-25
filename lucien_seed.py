@@ -1,7 +1,7 @@
-import telebot
+﻿import telebot
 import io, contextlib, os, time, traceback
 
-# Εδώ βάλε το δικό σου TOKEN που σου έδωσε ο BotFather
+# Î•Î´ÏŽ Î²Î¬Î»Îµ Ï„Î¿ Î´Î¹ÎºÏŒ ÏƒÎ¿Ï… TOKEN Ï€Î¿Ï… ÏƒÎ¿Ï… Î­Î´Ï‰ÏƒÎµ Î¿ BotFather
 TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'
 bot = telebot.TeleBot(TOKEN)
 

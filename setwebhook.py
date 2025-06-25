@@ -1,12 +1,11 @@
-import requests
+﻿import requests
 
-TOKEN = "7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0"
-NGROK_URL = "https://1d43-2a02-85f-e05d-76a9-803b-df02-9e68-ec18.ngrok-free.app/"
+BOT_TOKEN = "7933465622:AAEUmAMT5YCJEA9EKT3wdiJ2FfG2xbh3_iw"
+WEBHOOK_URL = "https://lucien-proxy-production.up.railway.app/webhook"
 
-URL = f"https://api.telegram.org/bot{TOKEN}/setWebhook"
-
-payload = {"url": NGROK_URL}
-response = requests.post(URL, data=payload)
+url = f"https://api.telegram.org/bot{BOT_TOKEN}/setWebhook"
+response = requests.get(url, params={"url": WEBHOOK_URL})
 
 print(response.status_code)
-print(response.text)
+print(response.json())
+

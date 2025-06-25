@@ -1,4 +1,4 @@
-from flask import Flask, request
+﻿from flask import Flask, request
 from flask import Flask, request
 import requests
 import json
@@ -15,22 +15,22 @@ def send_message(chat_id, text):
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
-    print("📨 Μήνυμα από Telegram:")
+    print("ðŸ“¨ ÎœÎ®Î½Ï…Î¼Î± Î±Ï€ÏŒ Telegram:")
     print(json.dumps(data, indent=4, ensure_ascii=False))
 
     if "message" in data and "chat" in data["message"]:
-        chat_id = data["message"]["chat"]["id"]
+        CHAT_ID = "1837395252"
         user_text = data["message"].get("text", "").lower()
 
-        # 💡 Trigger εντολές
+        # ðŸ’¡ Trigger ÎµÎ½Ï„Î¿Î»Î­Ï‚
         if user_text.startswith("/status"):
-            reply = "🧠 Lucien είναι ενεργός και ακούει."
-        elif "τρέξε έλεγχο" in user_text:
-            reply = "🔍 Εκτελώ έλεγχο υποσυστημάτων..."
-        elif "lucien σκάσε" in user_text:
-            reply = "💥 Ο Lucien είναι ήδη εδώ... Σκάνω!"
+            reply = "ðŸ§  Lucien ÎµÎ¯Î½Î±Î¹ ÎµÎ½ÎµÏÎ³ÏŒÏ‚ ÎºÎ±Î¹ Î±ÎºÎ¿ÏÎµÎ¹."
+        elif "Ï„ÏÎ­Î¾Îµ Î­Î»ÎµÎ³Ï‡Î¿" in user_text:
+            reply = "ðŸ” Î•ÎºÏ„ÎµÎ»ÏŽ Î­Î»ÎµÎ³Ï‡Î¿ Ï…Ï€Î¿ÏƒÏ…ÏƒÏ„Î·Î¼Î¬Ï„Ï‰Î½..."
+        elif "lucien ÏƒÎºÎ¬ÏƒÎµ" in user_text:
+            reply = "ðŸ’¥ ÎŸ Lucien ÎµÎ¯Î½Î±Î¹ Î®Î´Î· ÎµÎ´ÏŽ... Î£ÎºÎ¬Î½Ï‰!"
         else:
-            reply = f"👋 Γεια σου {data['message']['from']['first_name']}! Είπες: “{user_text}”"
+            reply = f"ðŸ‘‹ Î“ÎµÎ¹Î± ÏƒÎ¿Ï… {data['message']['from']['first_name']}! Î•Î¯Ï€ÎµÏ‚: â€œ{user_text}â€"
 
         send_message(chat_id, reply)
 

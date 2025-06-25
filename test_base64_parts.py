@@ -1,4 +1,4 @@
-import base64
+﻿import base64
 
 parts = [
     "lucienx_part1.txt",
@@ -22,4 +22,4 @@ for part in parts:
     with open(part, "r") as f:
         data = f.read()
         valid = is_valid_base64(data)
-        print(f"{part}: {'✅ OK' if valid else '❌ INVALID'}")
+        print(f"{part}: {'âœ… OK' if valid else 'âŒ INVALID'}")

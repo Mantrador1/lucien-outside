@@ -1,4 +1,4 @@
-import telebot
+﻿import telebot
 import io, contextlib, os, time, traceback
 
 TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'

@@ -1,44 +1,21 @@
-from flask import Flask, request, jsonify
+﻿import os
 import requests
-import os
+from dotenv import load_dotenv
 
-app = Flask(__name__)
+load_dotenv()
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHAT_ID = int(os.getenv("CHAT_ID"))
-API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
+BOT_TOKEN = "7933465622:AAEUmAMT5YCJEA9EKT3wdiJ2FfG2xbh3_iw"
+CHAT_ID = "1837395252"
 
-@app.route("/", methods=["GET"])
-def index():
-    return "Lucien Proxy is alive!"
-
-@app.route("/webhook", methods=["POST"])
-def webhook():
-    data = request.json
-    print("📥 Received data:", data)
-
-    if "message" in data and "text" in data["message"]:
-        chat_id = data["message"]["chat"]["id"]
-        text = data["message"]["text"]
-
-        reply = f"💬 Έλαβα το μήνυμά σου: \"{text}\""
-        send_message(chat_id, reply)
-
-    return jsonify({"status": "success"}), 200
-
-def send_message(chat_id, text):
-    url = f"{API_URL}/sendMessage"
+def send_message(text):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
-        "chat_id": chat_id,
+        "chat_id": CHAT_ID,
         "text": text
     }
-    try:
-        response = requests.post(url, json=payload)
-        response.raise_for_status()
-        print("✅ Sent message:", response.json())
-    except Exception as e:
-        print("❌ Error sending message:", str(e))
-        print("📦 Payload was:", payload)
+    response = requests.post(url, data=payload)
+    return response.json()
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    result = send_message("LucienX Proxy Test: ✅ Το bot λειτουργεί!")
+    print(result)

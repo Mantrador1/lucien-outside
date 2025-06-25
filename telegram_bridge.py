@@ -1,7 +1,7 @@
-import requests
+﻿import requests
 import time
 
-# Φόρτωση ρυθμίσεων από lucien.cfg
+# Î¦ÏŒÏÏ„Ï‰ÏƒÎ· ÏÏ…Î¸Î¼Î¯ÏƒÎµÏ‰Î½ Î±Ï€ÏŒ lucien.cfg
 config = {}
 with open("lucien.cfg", "r") as f:
     for line in f:
@@ -9,7 +9,7 @@ with open("lucien.cfg", "r") as f:
         config[key.strip()] = value.strip()
 
 TOKEN = config["TOKEN"]
-CHAT_ID = config["CHAT_ID"]
+CHAT_ID = "1837395252"
 API_URL = config["API_URL"]
 
 GET_UPDATES_URL = f"https://api.telegram.org/bot{TOKEN}/getUpdates"
@@ -27,7 +27,7 @@ def get_updates():
             last_update_id = result[-1]["update_id"] + 1
         return result
     except Exception as e:
-        print("❌ Σφάλμα get_updates:", e)
+        print("âŒ Î£Ï†Î¬Î»Î¼Î± get_updates:", e)
         return []
 
 def send_message(chat_id, text):
@@ -35,20 +35,20 @@ def send_message(chat_id, text):
     try:
         requests.post(SEND_MESSAGE_URL, data=data)
     except Exception as e:
-        print("❌ Σφάλμα send_message:", e)
+        print("âŒ Î£Ï†Î¬Î»Î¼Î± send_message:", e)
 
-# Κύριος βρόχος
+# ÎšÏÏÎ¹Î¿Ï‚ Î²ÏÏŒÏ‡Î¿Ï‚
 while True:
     updates = get_updates()
     for update in updates:
         if "message" in update and "text" in update["message"]:
             user_input = update["message"]["text"]
-            print("📩 Λήφθηκε μήνυμα:", user_input)
+            print("ðŸ“© Î›Î®Ï†Î¸Î·ÎºÎµ Î¼Î®Î½Ï…Î¼Î±:", user_input)
 
             try:
                 response = requests.post(API_URL, json={"prompt": user_input})
-                reply = response.json().get("response", "⚠️ Δεν πήρε απάντηση.")
+                reply = response.json().get("response", "âš ï¸ Î”ÎµÎ½ Ï€Î®ÏÎµ Î±Ï€Î¬Î½Ï„Î·ÏƒÎ·.")
                 send_message(CHAT_ID, reply)
             except Exception as e:
-                print("⚠️ Σφάλμα σύνδεσης με Lucien API:", e)
+                print("âš ï¸ Î£Ï†Î¬Î»Î¼Î± ÏƒÏÎ½Î´ÎµÏƒÎ·Ï‚ Î¼Îµ Lucien API:", e)
     time.sleep(2)
