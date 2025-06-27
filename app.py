@@ -2,8 +2,9 @@ from flask import Flask, request
 import subprocess
 import os
 from dotenv import load_dotenv
+import requests
 
-# 🔁 Φόρτωσε .env για local ή fallback
+# 🔁 Load .env variables
 load_dotenv()
 
 app = Flask(__name__)
@@ -11,8 +12,37 @@ app = Flask(__name__)
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 AUTHORIZED_CHAT_ID = os.getenv("CHAT_ID")
 
-print("🔐 BOT_TOKEN loaded:", BOT_TOKEN)
+print("🔐 BOT_TOKEN loaded:", BOT_TOKEN[:10] + "...")
 print("🆔 CHAT_ID loaded:", AUTHORIZED_CHAT_ID)
+
+# 🧪 Auto Credential Checker
+def run_credential_check():
+    print("🧪 Running credential check...")
+
+    test_message = "🧪 Lucien boot check: credentials loaded OK ✅"
+
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": AUTHORIZED_CHAT_ID,
+        "text": test_message
+    }
+
+    try:
+        r = requests.post(url, json=payload)
+        if r.status_code == 200:
+            print("📡 Credentials OK ✅")
+        else:
+            print(f"🚨 Credential check failed! Status: {r.status_code}")
+            print("❌ Response:", r.text)
+    except Exception as ex:
+        print("❌ Exception during credential check:", str(ex))
+
+run_credential_check()
+
+# ✅ Health check endpoint
+@app.route('/')
+def health_check():
+    return '✅ Lucien Proxy Running', 200
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -65,7 +95,6 @@ def webhook():
     return 'ok', 200
 
 def send_message(text):
-    import requests
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": AUTHORIZED_CHAT_ID,
@@ -73,6 +102,3 @@ def send_message(text):
     }
     r = requests.post(url, json=payload)
     print("📤 send_message result:", r.status_code, r.text)
-
-if __name__ == '__main__':
-    app.run(port=5000)
