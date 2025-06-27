@@ -1,4 +1,4 @@
-﻿import os
+import os
 from flask import Flask, request
 from command_router import route_command
 
@@ -11,18 +11,18 @@ def webhook():
     if "message" not in data:
         return {"ok": True}
 
-    CHAT_ID = "1837395252"
+    CHAT_ID = os.getenv("CHAT_ID")
     text = data["message"].get("text", "")
 
-    print(f"ðŸ“¥ Incoming message from {chat_id}: {text}")
+    print(f"📥 Incoming message from {chat_id}: {text}")
 
     if text.startswith("/"):
         response = route_command(chat_id, text)
     else:
-        response = f"â€¢ ÎˆÎ»Î±Î²Î± Ï„Î¿ Î¼Î®Î½Ï…Î¼Î¬ ÏƒÎ¿Ï…: \"{text}\""
+        response = f"• Έλαβα το μήνυμά σου: \"{text}\""
 
-    # Î•Î´ÏŽ Î¼Ï€Î¿ÏÎµÎ¯Ï‚ Î½Î± ÏƒÏ„ÎµÎ¯Î»ÎµÎ¹Ï‚ Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· ÏƒÏ„Î¿ Telegram Î±Î½ Î¸Î­Î»ÎµÎ¹Ï‚
-    print(f"ðŸ“¤ Response: {response}")
+    # Εδώ μπορείς να στείλεις απάντηση στο Telegram αν θέλεις
+    print(f"📤 Response: {response}")
     return {"ok": True}
 
 if __name__ == "__main__":

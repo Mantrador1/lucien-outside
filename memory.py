@@ -1,6 +1,6 @@
-﻿# memory.py
+# memory.py
 
-# Î‘Ï€Î»Î® Î¼Î½Î®Î¼Î· ÏƒÏ„Î· RAM (Ï‡Î¬Î½Î¿Î½Ï„Î±Î¹ Ï„Î± Î´ÎµÎ´Î¿Î¼Î­Î½Î± Î¼Îµ ÎºÎ¬Î¸Îµ restart)
+# Απλή μνήμη στη RAM (χάνονται τα δεδομένα με κάθε restart)
 session_memory = {}
 
 def store_message(chat_id, text):

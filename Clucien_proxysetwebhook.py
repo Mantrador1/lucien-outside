@@ -1,4 +1,4 @@
-﻿import requests
+import requests
 
 TOKEN = "7547818090:AAHvBBkve3uRVASQcZofVO66O6nzwr5V_AI"
 URL = f"https://api.telegram.org/bot{TOKEN}/setWebhook"
