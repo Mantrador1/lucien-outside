@@ -1,50 +1,40 @@
-import os
-import time
 import requests
-from datetime import datetime, timedelta
-from dotenv import load_dotenv
+import time
+import logging
 
-load_dotenv()
+BOT_TOKEN = "7933465622:AAFhHCGp4xxEn5KGvPmrbmdrDqkX-9XYRU0"
+CHAT_ID = "1837395252"
+CHECK_INTERVAL = 60  # έλεγχος κάθε 60 δευτερόλεπτα
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")
-LOG_FILE = "logs/lucien_commands.log"
-CHECK_INTERVAL = 1800  # 30 λεπτά
-INACTIVITY_THRESHOLD_HOURS = 24
+logging.basicConfig(level=logging.INFO)
 
-def get_last_activity():
+def is_token_valid():
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/getMe"
     try:
-        with open(LOG_FILE, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            if not lines:
-                return None
-            last_line = lines[-1]
-            timestamp_str = last_line.split(" | ")[0].strip()
-            return datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
-    except:
-        return None
+        response = requests.get(url)
+        data = response.json()
+        return data.get("ok", False)
+    except Exception as e:
+        logging.error(f"[Watchdog Error] {e}")
+        return False
 
-def send_alert():
+def send_alert(message):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": CHAT_ID,
-        "text": "⚠️ Lucien inactivity alert: No interaction in the last 24h."
-    }
-    requests.post(url, json=payload)
+    payload = {"chat_id": CHAT_ID, "text": message}
+    try:
+        requests.post(url, data=payload)
+    except:
+        pass
 
-def monitor():
-    print("👁️ Lucien Watchdog Started")
+def main():
     while True:
-        last = get_last_activity()
-        now = datetime.now()
-
-        if not last or now - last > timedelta(hours=INACTIVITY_THRESHOLD_HOURS):
-            print("⚠️ Inactivity detected.")
-            send_alert()
+        valid = is_token_valid()
+        if not valid:
+            logging.warning("[TOKEN EXPIRED] 🔥 Το Telegram Bot Token φαίνεται invalid!")
+            send_alert("⚠️ Το Telegram Bot Token έπαψε να ισχύει! Χρειάζεται νέο.")
         else:
-            print("✅ Activity within limits.")
-
+            logging.info("[TOKEN VALID] ✅ Το token είναι έγκυρο.")
         time.sleep(CHECK_INTERVAL)
 
 if __name__ == "__main__":
-    monitor()
+    main()

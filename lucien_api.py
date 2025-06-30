@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-BOT_TOKEN = "7933465622:AAGoNm0xlOrRywzihu4FjYkBTU9ywmmng8"
+BOT_TOKEN = "7933465622:AAFhHCGp4xxEn5KGvPmrbmdrDqkX-9XYRU0"
 AUTHORIZED_CHAT_ID = "1837395252"
 LOG_FILE = "logs/lucien_commands.log"
 

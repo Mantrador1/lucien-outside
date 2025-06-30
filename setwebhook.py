@@ -1,6 +1,6 @@
 import requests
 
-BOT_TOKEN = "7933465622:AAEUmAMT5YCJEA9EKT3wdjJ2FfG2xbh3_iw"
+BOT_TOKEN = "7933465622:AAFhHCGp4xxEn5KGvPmrbmdrDqkX-9XYRU0"
 WEBHOOK_URL = "https://lucien-proxy-production.up.railway.app/webhook"
 
 response = requests.get(

@@ -1,3 +1,13 @@
 @echo off
-cd /d C:\lucien_proxy
-start "" "C:\Users\lello\AppData\Local\Programs\Python\Python313\python.exe" autowebhook.py
+echo Starting Lucien Proxy...
+
+:: Εκκίνηση Lucien Bot
+start /min python lucien_bot.py
+
+:: Εκκίνηση Telegram Command Listener
+start /min python telegram_command_listener.py
+
+:: Εκκίνηση Watchdog Token Checker
+start /min python lucien_watchdog.py
+
+exit
