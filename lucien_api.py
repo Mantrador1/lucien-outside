@@ -5,8 +5,8 @@ import json
 
 app = Flask(__name__)
 
-BOT_TOKEN = "7933465622:AAFhHCGp4xxEn5KGvPmrbmdrDqkX-9XYRU0"
-AUTHORIZED_CHAT_ID = "1837395252"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+AUTHORIZED_CHAT_ID = os.environ.get("CHAT_ID")
 LOG_FILE = "logs/lucien_commands.log"
 
 def send_message(chat_id, text):

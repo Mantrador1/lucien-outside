@@ -5,7 +5,7 @@ import json
 import os
 
 # === Ρυθμίσεις ===
-TELEGRAM_TOKEN = "7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0"
+TELEGRAM_TOKEN = os.environ.get("BOT_TOKEN")
 NGROK_PATH = "C:/lucien_proxy/ngrok.exe"
 FLASK_SCRIPT = "lucien_api.py"
 

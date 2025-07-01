@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Λήψη του BOT_TOKEN και CHAT_ID από το .env
-BOT_TOKEN = "7933465622:AAFhHCGp4xxEn5KGvPmrbmdrDqkX-9XYRU0"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 # ✅ Διαγνωστικά prints για να δεις τι φορτώνει

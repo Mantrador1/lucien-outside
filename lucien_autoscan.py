@@ -7,7 +7,7 @@ import pyperclip
 from PIL import Image
 from io import BytesIO
 
-TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'
+TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 INTERVAL = 1800  # 30 λεπτά

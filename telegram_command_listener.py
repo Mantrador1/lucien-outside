@@ -3,7 +3,7 @@ import subprocess
 import time
 
 # === ΡΥΘΜΙΣΕΙΣ ===
-TOKEN = "7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0"
+TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 URL = f"https://api.telegram.org/bot{TOKEN}/"

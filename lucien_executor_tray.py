@@ -1,7 +1,7 @@
 import telebot
 import io, contextlib, os, time, traceback
 
-TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'
+TOKEN = os.environ.get("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
 print("Executor v9 running...")

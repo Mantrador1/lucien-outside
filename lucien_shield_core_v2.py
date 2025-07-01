@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw
 
 # -- CONFIG
 CHAT_ID = os.getenv("CHAT_ID")
-TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'
+TOKEN = os.environ.get("BOT_TOKEN")
 PIN_CODE = "360"
 BASE_PATH = os.getcwd()
 UPLOAD_FOLDER = os.path.join(BASE_PATH, "uploads")

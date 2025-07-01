@@ -2,8 +2,8 @@ import requests
 import time
 import logging
 
-BOT_TOKEN = "7933465622:AAFhHCGp4xxEn5KGvPmrbmdrDqkX-9XYRU0"
-CHAT_ID = "1837395252"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+CHAT_ID = os.environ.get("CHAT_ID")
 CHECK_INTERVAL = 60  # έλεγχος κάθε 60 δευτερόλεπτα
 
 logging.basicConfig(level=logging.INFO)

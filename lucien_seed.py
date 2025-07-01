@@ -2,7 +2,7 @@ import telebot
 import io, contextlib, os, time, traceback
 
 # Εδώ βάλε το δικό σου TOKEN που σου έδωσε ο BotFather
-TOKEN = '7573715897:AAGgNmOxIOrRywzihuF4jFYkBTU9ymvwgn0'
+TOKEN = os.environ.get("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
 print("Lucien Executor v9 running...")
