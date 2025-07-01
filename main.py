@@ -44,5 +44,7 @@ def send_message(chat_id, text):
     return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    port = int(os.getenv('PORT', 5000))
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
 
