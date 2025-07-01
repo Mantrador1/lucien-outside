@@ -12,13 +12,23 @@ def command():
     try:
         data = request.json
         command = data.get('command', '')
+
         if command == 'ping':
             return jsonify({'status': 'success', 'response': 'pong'})
         else:
             return jsonify({'status': 'error', 'message': 'Unknown command'}), 400
+
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
+@app.route('/env', methods=['GET'])
+def env():
+    return jsonify({
+        'PORT': os.getenv('PORT'),
+        'BOT_TOKEN': os.getenv('BOT_TOKEN')
+    })
+
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
+    print(f"Using PORT: {port}")
     app.run(host='0.0.0.0', port=port)
