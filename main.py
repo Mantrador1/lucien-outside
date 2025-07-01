@@ -1,34 +1,52 @@
-import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
+import os
+import requests
 from dotenv import load_dotenv
 
-# Load environment variables from .env file if present
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 CORS(app)
 
-@app.route('/')
-def home():
-    return 'Lucien Proxy is running', 200
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
+DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "gpt-3.5-turbo")
 
-@app.route('/command', methods=['POST'])
-def handle_command():
+@app.route("/")
+def index():
+    return send_from_directory("static", "index.html")
+
+@app.route("/ask", methods=["POST"])
+def ask():
     data = request.get_json()
+    prompt = data.get("prompt", "")
 
-    if not data or 'command' not in data:
-        return jsonify({'status': 'error', 'message': 'Missing command field'}), 400
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json"
+    }
 
-    command = data['command']
+    body = {
+        "model": DEFAULT_MODEL,
+        "messages": [
+            {"role": "user", "content": prompt}
+        ]
+    }
 
-    # Dummy example: respond with pong
-    if command == 'ping':
-        return jsonify({'status': 'success', 'response': 'pong'}), 200
+    try:
+        response = requests.post(
+            f"{OPENROUTER_BASE_URL}/chat/completions",
+            headers=headers,
+            json=body
+        )
+        response.raise_for_status()
+        result = response.json()
+        reply = result["choices"][0]["message"]["content"]
+        return jsonify({"response": reply})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-    # You can add more commands here
-    return jsonify({'status': 'error', 'message': 'Unknown command'}), 400
-
-if __name__ == '__main__':
-    port = int(os.getenv('PORT', 8080))
-    app.run(host='0.0.0.0', port=port)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5050))
+    app.run(host="0.0.0.0", port=port)
