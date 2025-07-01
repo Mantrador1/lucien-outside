@@ -1,52 +1,44 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Lucien Proxy Chat</title>
-    <style>
-        body {
-            font-family: monospace;
-            background-color: #111;
-            color: #0f0;
-            padding: 20px;
-        }
-        textarea, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #222;
-            color: #0f0;
-            border: 1px solid #0f0;
-        }
-        .response {
-            margin-top: 20px;
-            white-space: pre-wrap;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Lucien Proxy Chat</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+    #messages { margin-top: 20px; max-height: 300px; overflow-y: auto; background: #fff; padding: 10px; border: 1px solid #ccc; }
+    .msg { margin-bottom: 10px; }
+    .user { color: blue; font-weight: bold; }
+    .bot { color: green; }
+  </style>
 </head>
 <body>
-    <h2>🤖 Lucien External Proxy</h2>
-    <textarea id="prompt" rows="4" placeholder="Γράψε εδώ την ερώτησή σου..."></textarea>
-    <button onclick="askLucien()">Ρώτα τον Lucien</button>
-    <div class="response" id="response"></div>
+  <h2>Lucien Proxy Chat</h2>
+  <input type="text" id="prompt" placeholder="Γράψε κάτι..." style="width: 70%;">
+  <button onclick="sendPrompt()">Αποστολή</button>
 
-    <script>
-        async function askLucien() {
-            const prompt = document.getElementById('prompt').value;
-            const responseDiv = document.getElementById('response');
-            responseDiv.innerText = "⏳ Περιμένω απάντηση...";
+  <div id="messages"></div>
 
-            const response = await fetch('/ask', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ prompt: prompt })
-            });
+  <script>
+    async function sendPrompt() {
+      const prompt = document.getElementById('prompt').value;
+      const messagesDiv = document.getElementById('messages');
 
-            const data = await response.json();
-            responseDiv.innerText = "💬 " + data.response;
-        }
-    </script>
+      if (!prompt.trim()) return;
+
+      messagesDiv.innerHTML += `<div class="msg user">Εσύ: ${prompt}</div>`;
+
+      const response = await fetch("http://localhost:5050/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: prompt })
+      });
+
+      const data = await response.json();
+      messagesDiv.innerHTML += `<div class="msg bot">Λυσιέν: ${data.response}</div>`;
+      document.getElementById('prompt').value = '';
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  </script>
 </body>
 </html>
+
