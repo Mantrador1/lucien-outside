@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-app.config['PORT'] = os.getenv('PORT', default=5000, type=int)
+PORT = 8080  # Σταθερή πόρτα, όπως το δείχνουν τα logs του Railway
 
 @app.route('/', methods=['GET'])
 def home():
@@ -24,6 +24,5 @@ def command():
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=app.config['PORT'])
-
+    app.run(host='0.0.0.0', port=PORT)
 
