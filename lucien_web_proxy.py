@@ -31,7 +31,7 @@ def ask():
     }
 
     body = {
-        "model": "mistralai/mistral-7b-instruct:free",
+        "model": "dolphin-mixtral-8x7b",
         "messages": memory[user_ip],
         "max_tokens": 500
     }

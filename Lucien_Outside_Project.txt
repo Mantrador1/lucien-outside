@@ -62,8 +62,8 @@ python telegram_bridge.py
 
 Περιεχόμενο αρχείου lucien.cfg (παράδειγμα):
 
-TOKEN=123456789:ABCdefGHI_jklMNOpqrSTUvwxYZ
-CHAT_ID=987654321
+TOKEN=1837395252:ABCdefGHI_jklMNOpqrSTUvwxYZ
+CHAT_ID=1837395252
 API_URL=http://localhost:11434/ask
 
 10. Αντικαθιστώ το telegram_bridge.py με νέα έκδοση που διαβάζει αυτόματα τις ρυθμίσεις από το αρχείο lucien.cfg, χωρίς να γράφω Token/ID μέσα στον κώδικα.

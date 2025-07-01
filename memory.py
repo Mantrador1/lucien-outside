@@ -1,4 +1,4 @@
-﻿import json
+import json
 import os
 
 MEMORY_FILE = 'memory_store.json'

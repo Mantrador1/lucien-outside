@@ -21,7 +21,7 @@ def ask():
     }
 
     payload = {
-        "model": "openai/gpt-3.5-turbo",
+        "model": "dolphin-mixtral-8x7b",
         "messages": [
             {"role": "user", "content": prompt}
         ]

@@ -5,7 +5,7 @@ PROXY_URL = "https://lucien-proxy-production.up.railway.app/ask"
 def ask_lucien(prompt):
     payload = {
         "prompt": prompt,
-        "model": "meta-llama/llama-3-70b-instruct"
+        "model": "dolphin-mixtral-8x7b"
     }
 
     response = requests.post(PROXY_URL, json=payload)
