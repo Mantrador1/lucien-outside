@@ -1,19 +1,14 @@
-from flask import Flask, request
+from flask import Flask
 from waitress import serve
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route("/")
 def home():
-    return "Lucien Proxy is alive!"
-
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    data = request.json
-    print(f"Received webhook: {data}")
-    return {"status": "ok"}
+    return "Lucien Proxy is alive"
 
 if __name__ == "__main__":
-    serve(app, host='0.0.0.0', port=8080)
+    print("Running locally on http://127.0.0.1:8080")
+    serve(app, host="0.0.0.0", port=8080)
 
 

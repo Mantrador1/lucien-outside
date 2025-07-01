@@ -1,0 +1,24 @@
+import requests
+
+PROXY_URL = "https://lucien-proxy-production.up.railway.app/ask"
+
+def ask_lucien(prompt):
+    payload = {
+        "prompt": prompt,
+        "model": "meta-llama/llama-3-70b-instruct"
+    }
+
+    response = requests.post(PROXY_URL, json=payload)
+    if response.status_code == 200:
+        return response.json()["response"]
+    else:
+        print("❌ Error:", response.text)
+        return None
+
+if __name__ == "__main__":
+    while True:
+        prompt = input("👤 Εσύ: ")
+        if prompt.lower() in ["exit", "quit"]:
+            break
+        reply = ask_lucien(prompt)
+        print("🤖 Lucien:", reply)
