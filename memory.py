@@ -1,14 +1,21 @@
-# memory.py
+﻿import json
+import os
 
-# Απλή μνήμη στη RAM (χάνονται τα δεδομένα με κάθε restart)
-session_memory = {}
+MEMORY_FILE = 'memory_store.json'
 
-def store_message(chat_id, text):
-    if chat_id not in session_memory:
-        session_memory[chat_id] = []
-    session_memory[chat_id].append(text)
-    if len(session_memory[chat_id]) > 20:
-        session_memory[chat_id] = session_memory[chat_id][-20:]
+def _load_memory():
+    if not os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, 'w') as f:
+            f.write('{}')
+    with open(MEMORY_FILE, 'r') as f:
+        return json.load(f)
 
-def get_last_messages(chat_id, limit=5):
-    return session_memory.get(chat_id, [])[-limit:]
+def save_memory(key, value):
+    memory = _load_memory()
+    memory[key] = value
+    with open(MEMORY_FILE, 'w') as f:
+        json.dump(memory, f, indent=2)
+
+def load_memory(key):
+    memory = _load_memory()
+    return memory.get(key, None)
