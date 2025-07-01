@@ -1,33 +1,28 @@
-import os
 from flask import Flask, request, jsonify
-from waitress import serve
+import os
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return "Lucien Proxy is alive"
+@app.route('/')
+def home():
+    return '✅ Lucien Proxy is running.', 200
 
-@app.route("/command", methods=["POST"])
-def command():
+@app.route('/command', methods=['POST'])
+def handle_command():
     data = request.get_json()
+    command = data.get('command')
 
-    # Αν δεν έχει έρθει JSON, γύρνα λάθος
-    if not data or "command" not in data:
-        return jsonify({"error": "Missing 'command' field"}), 400
-
-    # Λάβε το περιεχόμενο του command
-    cmd = data["command"]
-
-    # Επιστρέφουμε απάντηση χωρίς να το εκτελούμε
-    if cmd.lower() == "ping":
+    if command == 'ping':
         return jsonify({"response": "pong"}), 200
     else:
-        return jsonify({"response": f"Command '{cmd}' received"}), 200
+        return jsonify({"response": f"Unknown command: {command}"}), 400
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    serve(app, host="0.0.0.0", port=port)
+if __name__ == '__main__':
+    from waitress import serve
+    port = int(os.environ.get('PORT', 8080))
+    print(f"🔧 Serving on 0.0.0.0:{port}")
+    serve(app, host='0.0.0.0', port=port)
+
 
 
 
