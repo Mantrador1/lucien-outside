@@ -1,19 +1,18 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import os
 
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
-def home():
-    return "✅ Lucien Proxy is alive!", 200
+def index():
+    return "✅ Lucien Proxy is alive!"
 
 @app.route("/webhook", methods=["POST"])
-def webhook():
+def telegram_webhook():
     data = request.json
-    print("Received data:", data)
-    return "Webhook received", 200
+    print(f"📩 Received update: {data}")
+    return jsonify({"status": "received"}), 200
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
 
