@@ -8,7 +8,6 @@ def home():
     return "Lucien Proxy is alive"
 
 if __name__ == "__main__":
-    print("Running locally on http://127.0.0.1:8080")
+    print("Running on 0.0.0.0:8080 for Railway")
     serve(app, host="0.0.0.0", port=8080)
-
 
