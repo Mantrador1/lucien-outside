@@ -1,8 +1,9 @@
-
 import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+app.config['PORT'] = os.getenv('PORT', default=5000, type=int)
 
 @app.route('/', methods=['GET'])
 def home():
@@ -23,9 +24,6 @@ def command():
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
-    port = os.getenv('PORT', default=5000, type=int)
-    app.run(host='0.0.0.0', port=port)
-
-
+    app.run(host='0.0.0.0', port=app.config['PORT'])
 
 
