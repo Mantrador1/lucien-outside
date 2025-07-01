@@ -1,4 +1,5 @@
 from flask import Flask, request
+from waitress import serve
 
 app = Flask(__name__)
 
@@ -12,6 +13,7 @@ def webhook():
     print(f"Received webhook: {data}")
     return {"status": "ok"}
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+if __name__ == "__main__":
+    serve(app, host='0.0.0.0', port=8080)
+
 
