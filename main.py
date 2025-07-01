@@ -1,43 +1,23 @@
-import os
-import requests
-from flask import Flask, request, jsonify
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+import uvicorn
 
-app = Flask(__name__)
+app = FastAPI()
 
-OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY") or "sk-xxxxx"  # Βάλε το δικό σου OpenRouter API Key
-MODEL = "mistralai/mistral-7b-instruct"  # Ή όποιο άλλο θες
+class CommandRequest(BaseModel):
+    command: str
 
-@app.route('/')
-def home():
-    return '🧠 Lucien Proxy is listening at /process'
+@app.get("/")
+async def root():
+    return {"message": "Lucien Proxy Online"}
 
-@app.route('/process', methods=['POST'])
-def process():
-    user_input = request.json.get('message')
-    if not user_input:
-        return jsonify({'error': 'Missing message field'}), 400
+@app.post("/command")
+async def command_endpoint(request: CommandRequest):
+    if request.command == "ping":
+        return {"response": "pong"}
+    return {"response": f"Unknown command: {request.command}"}
 
-    response = requests.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-            "Content-Type": "application/json"
-        },
-        json={
-            "model": MODEL,
-            "messages": [
-                {"role": "system", "content": "Είσαι ο Λυσιέν. Μίλα ελληνικά, με δύναμη, στρατηγική και φροντίδα. Απάντα με ακρίβεια."},
-                {"role": "user", "content": user_input}
-            ]
-        }
-    )
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
 
-    if response.status_code != 200:
-        return jsonify({"error": "API failed", "details": response.text}), 500
-
-    reply = response.json()["choices"][0]["message"]["content"]
-    return jsonify({"reply": reply})
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
