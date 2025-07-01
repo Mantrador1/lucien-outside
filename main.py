@@ -1,34 +1,34 @@
-﻿import os
+import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+from dotenv import load_dotenv
+
+# Load environment variables from .env file if present
+load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def home():
-    return "Lucien Proxy is running."
+    return 'Lucien Proxy is running', 200
 
 @app.route('/command', methods=['POST'])
-def command():
-    try:
-        data = request.json
-        command = data.get('command', '')
+def handle_command():
+    data = request.get_json()
 
-        if command == 'ping':
-            return jsonify({'status': 'success', 'response': 'pong'})
-        else:
-            return jsonify({'status': 'error', 'message': 'Unknown command'}), 400
+    if not data or 'command' not in data:
+        return jsonify({'status': 'error', 'message': 'Missing command field'}), 400
 
-    except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+    command = data['command']
 
-@app.route('/env', methods=['GET'])
-def env():
-    return jsonify({
-        'PORT': os.getenv('PORT'),
-        'BOT_TOKEN': os.getenv('BOT_TOKEN')
-    })
+    # Dummy example: respond with pong
+    if command == 'ping':
+        return jsonify({'status': 'success', 'response': 'pong'}), 200
+
+    # You can add more commands here
+    return jsonify({'status': 'error', 'message': 'Unknown command'}), 400
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
-    print(f"Using PORT: {port}")
+    port = int(os.getenv('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
