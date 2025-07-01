@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Lucien Proxy Chat</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #111;
+            color: #0f0;
+            padding: 20px;
+        }
+        textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #222;
+            color: #0f0;
+            border: 1px solid #0f0;
+        }
+        .response {
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>🤖 Lucien External Proxy</h2>
+    <textarea id="prompt" rows="4" placeholder="Γράψε εδώ την ερώτησή σου..."></textarea>
+    <button onclick="askLucien()">Ρώτα τον Lucien</button>
+    <div class="response" id="response"></div>
+
+    <script>
+        async function askLucien() {
+            const prompt = document.getElementById('prompt').value;
+            const responseDiv = document.getElementById('response');
+            responseDiv.innerText = "⏳ Περιμένω απάντηση...";
+
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: prompt })
+            });
+
+            const data = await response.json();
+            responseDiv.innerText = "💬 " + data.response;
+        }
+    </script>
+</body>
+</html>
