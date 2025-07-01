@@ -1,23 +1,25 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel
-import uvicorn
+import os
+from flask import Flask, request, jsonify
+from waitress import serve
 
-app = FastAPI()
+app = Flask(__name__)
 
-class CommandRequest(BaseModel):
-    command: str
+@app.route("/")
+def index():
+    return "Lucien Proxy is alive"
 
-@app.get("/")
-async def root():
-    return {"message": "Lucien Proxy Online"}
-
-@app.post("/command")
-async def command_endpoint(request: CommandRequest):
-    if request.command == "ping":
-        return {"response": "pong"}
-    return {"response": f"Unknown command: {request.command}"}
+@app.route("/command", methods=["POST"])
+def command():
+    data = request.get_json()
+    cmd = data.get("command", "")
+    
+    if cmd == "ping":
+        return jsonify({"response": "pong"}), 200
+    else:
+        return jsonify({"error": "Unknown command"}), 400
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8080))
+    serve(app, host="0.0.0.0", port=port)
+
 
