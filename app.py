@@ -23,7 +23,7 @@ def ask():
              f"User input:\n{user_input}"
 
     response = requests.post(
-        "http://localhost:11434/api/generate",
+        "https://openrouter.ai/api/v1/chat/completions",
         json={
             "model": "llama3:8b",
             "prompt": prompt,

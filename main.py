@@ -4,7 +4,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-OLLAMA_URL = os.environ.get("LLM_ENDPOINT", "http://localhost:11434/api/generate")
+OLLAMA_URL = os.environ.get("LLM_ENDPOINT", "https://openrouter.ai/api/v1/chat/completions")
 OLLAMA_MODEL = os.environ.get("LLM_MODEL", "llama3:8b")
 
 @app.route("/ask", methods=["POST"])
