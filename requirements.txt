@@ -1,5 +1,1 @@
-flask
-requests
-python-dotenv
-
-gunicorn
+﻿Flask==2.0.2
