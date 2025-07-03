@@ -15,7 +15,7 @@ def send_message(chat_id, text):
         "chat_id": chat_id,
         "text": text
     }
-    requests.post(url, json=payload)
+    requests.post(url, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json=payload)
 
 def log_command(text):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

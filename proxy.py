@@ -22,7 +22,7 @@ def ask():
         "Content-Type": "application/json"
     }
     try:
-        response = requests.post(url, json=payload, headers=headers)
+        response = requests.post(url, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json=payload, headers=headers)
         response.raise_for_status()
         return jsonify(response.json()), 200
     except requests.exceptions.RequestException as e:

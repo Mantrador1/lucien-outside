@@ -9,7 +9,7 @@ RAILWAY_API_URL = os.environ.get("RAILWAY_API_URL") or "http://localhost:5050/as
 
 def send_message(chat_id, text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    requests.post(url, json={"chat_id": chat_id, "text": text})
+    requests.post(url, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json={"chat_id": chat_id, "text": text})
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -19,7 +19,7 @@ def webhook():
         chat_id = data["message"]["chat"]["id"]
 
         try:
-            res = requests.post(RAILWAY_API_URL, json={"prompt": user_msg})
+            res = requests.post(RAILWAY_API_URL, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json={"prompt": user_msg})
             ai_response = res.json().get("response", "?? Error from AI")
         except Exception as e:
             ai_response = f"?? Exception: {e}"

@@ -17,7 +17,7 @@ def ask():
     }
 
     try:
-        res = requests.post(OLLAMA_URL, json=payload)
+        res = requests.post(OLLAMA_URL, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json=payload)
         return res.text
     except Exception as e:
         return str(e), 500

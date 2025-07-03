@@ -33,7 +33,7 @@ def ask_ai():
         "messages": [{"role": "user", "content": prompt}]
     }
 
-    response = requests.post(f"{OPENROUTER_BASE_URL}/chat/completions", json=payload, headers=headers)
+    response = requests.post(f"{OPENROUTER_BASE_URL}/chat/completions", headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json=payload, headers=headers)
 
     if response.status_code != 200:
         return jsonify({"error": "Failed to connect to OpenRouter.", "details": response.text}), 500

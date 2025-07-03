@@ -46,7 +46,7 @@ while True:
             print("Ã°Å¸â€œÂ© ÃŽâ€ºÃŽÂ®Ãâ€ ÃŽÂ¸ÃŽÂ·ÃŽÂºÃŽÂµ ÃŽÂ¼ÃŽÂ®ÃŽÂ½Ãâ€¦ÃŽÂ¼ÃŽÂ±:", user_input)
 
             try:
-                response = requests.post(API_URL, json={"prompt": user_input})
+                response = requests.post(API_URL, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json={"prompt": user_input})
                 reply = response.json().get("response", "Ã¢Å¡Â Ã¯Â¸Â ÃŽâ€ÃŽÂµÃŽÂ½ Ãâ‚¬ÃŽÂ®ÃÂÃŽÂµ ÃŽÂ±Ãâ‚¬ÃŽÂ¬ÃŽÂ½Ãâ€žÃŽÂ·ÃÆ’ÃŽÂ·.")
                 send_message(CHAT_ID, reply)
             except Exception as e:

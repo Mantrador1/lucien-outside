@@ -8,7 +8,7 @@ def ask_lucien(prompt):
         "model": "dolphin-mixtral-8x7b"
     }
 
-    response = requests.post(PROXY_URL, json=payload)
+    response = requests.post(PROXY_URL, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json=payload)
     if response.status_code == 200:
         return response.json()["response"]
     else:
