@@ -1,40 +1,26 @@
 import os
 import requests
-from flask import Flask, request, jsonify
-from waitress import serve
+from flask import Flask, request
 
 app = Flask(__name__)
 
-OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+OLLAMA_URL = os.environ.get("LLM_ENDPOINT", "http://localhost:11434/api/generate")
+OLLAMA_MODEL = os.environ.get("LLM_MODEL", "llama3:8b")
 
 @app.route("/ask", methods=["POST"])
 def ask():
-    data = request.get_json(force=True)
-    if not data or "prompt" not in data:
-        return jsonify({"error": "Missing 'prompt' in request"}), 400
-
-    prompt = data["prompt"]
-
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
+    prompt = request.get_json().get("prompt", "")
     payload = {
-        "model": "dolphin-mixtral-8x7b",
-        "messages": [
-            {"role": "user", "content": prompt}
-        ]
+        "model": OLLAMA_MODEL,
+        "prompt": prompt,
+        "stream": False
     }
 
     try:
-        response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
-        response.raise_for_status()
-        ai_response = response.json()["choices"][0]["message"]["content"]
-        return jsonify({"response": ai_response}), 200
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": str(e)}), 500
+        res = requests.post(OLLAMA_URL, json=payload)
+        return res.text
+    except Exception as e:
+        return str(e), 500
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    serve(app, host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 8080)))
