@@ -1,7 +1,7 @@
-import telebot
+﻿import telebot
 import io, contextlib, os, time, traceback
 
-# Î•Î´ÏŽ Î²Î¬Î»Îµ Ï„Î¿ Î´Î¹ÎºÏŒ ÏƒÎ¿Ï… TOKEN Ï€Î¿Ï… ÏƒÎ¿Ï… Î­Î´Ï‰ÏƒÎµ Î¿ BotFather
+# ÃŽâ€¢ÃŽÂ´ÃÅ½ ÃŽÂ²ÃŽÂ¬ÃŽÂ»ÃŽÂµ Ãâ€žÃŽÂ¿ ÃŽÂ´ÃŽÂ¹ÃŽÂºÃÅ’ ÃÆ’ÃŽÂ¿Ãâ€¦ TOKEN Ãâ‚¬ÃŽÂ¿Ãâ€¦ ÃÆ’ÃŽÂ¿Ãâ€¦ ÃŽÂ­ÃŽÂ´Ãâ€°ÃÆ’ÃŽÂµ ÃŽÂ¿ BotFather
 TOKEN = os.environ.get("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 

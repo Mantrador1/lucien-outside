@@ -1,7 +1,7 @@
-import requests
+﻿import requests
 import time
 
-# Î¦ÏŒÏÏ„Ï‰ÏƒÎ· ÏÏ…Î¸Î¼Î¯ÏƒÎµÏ‰Î½ Î±Ï€ÏŒ lucien.cfg
+# ÃŽÂ¦ÃÅ’ÃÂÃâ€žÃâ€°ÃÆ’ÃŽÂ· ÃÂÃâ€¦ÃŽÂ¸ÃŽÂ¼ÃŽÂ¯ÃÆ’ÃŽÂµÃâ€°ÃŽÂ½ ÃŽÂ±Ãâ‚¬ÃÅ’ lucien.cfg
 config = {}
 with open("lucien.cfg", "r") as f:
     for line in f:
@@ -27,7 +27,7 @@ def get_updates():
             last_update_id = result[-1]["update_id"] + 1
         return result
     except Exception as e:
-        print("âŒ Î£Ï†Î¬Î»Î¼Î± get_updates:", e)
+        print("Ã¢ÂÅ’ ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± get_updates:", e)
         return []
 
 def send_message(chat_id, text):
@@ -35,20 +35,20 @@ def send_message(chat_id, text):
     try:
         requests.post(SEND_MESSAGE_URL, data=data)
     except Exception as e:
-        print("âŒ Î£Ï†Î¬Î»Î¼Î± send_message:", e)
+        print("Ã¢ÂÅ’ ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± send_message:", e)
 
-# ÎšÏÏÎ¹Î¿Ï‚ Î²ÏÏŒÏ‡Î¿Ï‚
+# ÃŽÅ¡ÃÂÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š ÃŽÂ²ÃÂÃÅ’Ãâ€¡ÃŽÂ¿Ãâ€š
 while True:
     updates = get_updates()
     for update in updates:
         if "message" in update and "text" in update["message"]:
             user_input = update["message"]["text"]
-            print("ðŸ“© Î›Î®Ï†Î¸Î·ÎºÎµ Î¼Î®Î½Ï…Î¼Î±:", user_input)
+            print("Ã°Å¸â€œÂ© ÃŽâ€ºÃŽÂ®Ãâ€ ÃŽÂ¸ÃŽÂ·ÃŽÂºÃŽÂµ ÃŽÂ¼ÃŽÂ®ÃŽÂ½Ãâ€¦ÃŽÂ¼ÃŽÂ±:", user_input)
 
             try:
                 response = requests.post(API_URL, json={"prompt": user_input})
-                reply = response.json().get("response", "âš ï¸ Î”ÎµÎ½ Ï€Î®ÏÎµ Î±Ï€Î¬Î½Ï„Î·ÏƒÎ·.")
+                reply = response.json().get("response", "Ã¢Å¡Â Ã¯Â¸Â ÃŽâ€ÃŽÂµÃŽÂ½ Ãâ‚¬ÃŽÂ®ÃÂÃŽÂµ ÃŽÂ±Ãâ‚¬ÃŽÂ¬ÃŽÂ½Ãâ€žÃŽÂ·ÃÆ’ÃŽÂ·.")
                 send_message(CHAT_ID, reply)
             except Exception as e:
-                print("âš ï¸ Î£Ï†Î¬Î»Î¼Î± ÏƒÏÎ½Î´ÎµÏƒÎ·Ï‚ Î¼Îµ Lucien API:", e)
+                print("Ã¢Å¡Â Ã¯Â¸Â ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± ÃÆ’ÃÂÃŽÂ½ÃŽÂ´ÃŽÂµÃÆ’ÃŽÂ·Ãâ€š ÃŽÂ¼ÃŽÂµ Lucien API:", e)
     time.sleep(2)

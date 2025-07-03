@@ -1,4 +1,4 @@
-import requests
+﻿import requests
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 WEBHOOK_URL = "https://lucien-proxy-production.up.railway.app/webhook"
@@ -8,5 +8,5 @@ response = requests.get(
     params={"url": WEBHOOK_URL}
 )
 
-print("ðŸ”— Webhook Set Response:")
+print("Ã°Å¸â€â€” Webhook Set Response:")
 print(response.json())

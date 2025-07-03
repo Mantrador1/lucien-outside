@@ -1,10 +1,10 @@
-import requests
+﻿import requests
 import time
 import logging
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.environ.get("CHAT_ID")
-CHECK_INTERVAL = 60  # Î­Î»ÎµÎ³Ï‡Î¿Ï‚ ÎºÎ¬Î¸Îµ 60 Î´ÎµÏ…Ï„ÎµÏÏŒÎ»ÎµÏ€Ï„Î±
+CHECK_INTERVAL = 60  # ÃŽÂ­ÃŽÂ»ÃŽÂµÃŽÂ³Ãâ€¡ÃŽÂ¿Ãâ€š ÃŽÂºÃŽÂ¬ÃŽÂ¸ÃŽÂµ 60 ÃŽÂ´ÃŽÂµÃâ€¦Ãâ€žÃŽÂµÃÂÃÅ’ÃŽÂ»ÃŽÂµÃâ‚¬Ãâ€žÃŽÂ±
 
 logging.basicConfig(level=logging.INFO)
 
@@ -30,10 +30,10 @@ def main():
     while True:
         valid = is_token_valid()
         if not valid:
-            logging.warning("[TOKEN EXPIRED] ðŸ”¥ Î¤Î¿ Telegram Bot Token Ï†Î±Î¯Î½ÎµÏ„Î±Î¹ invalid!")
-            send_alert("âš ï¸ Î¤Î¿ Telegram Bot Token Î­Ï€Î±ÏˆÎµ Î½Î± Î¹ÏƒÏ‡ÏÎµÎ¹! Î§ÏÎµÎ¹Î¬Î¶ÎµÏ„Î±Î¹ Î½Î­Î¿.")
+            logging.warning("[TOKEN EXPIRED] Ã°Å¸â€Â¥ ÃŽÂ¤ÃŽÂ¿ Telegram Bot Token Ãâ€ ÃŽÂ±ÃŽÂ¯ÃŽÂ½ÃŽÂµÃâ€žÃŽÂ±ÃŽÂ¹ invalid!")
+            send_alert("Ã¢Å¡Â Ã¯Â¸Â ÃŽÂ¤ÃŽÂ¿ Telegram Bot Token ÃŽÂ­Ãâ‚¬ÃŽÂ±ÃË†ÃŽÂµ ÃŽÂ½ÃŽÂ± ÃŽÂ¹ÃÆ’Ãâ€¡ÃÂÃŽÂµÃŽÂ¹! ÃŽÂ§ÃÂÃŽÂµÃŽÂ¹ÃŽÂ¬ÃŽÂ¶ÃŽÂµÃâ€žÃŽÂ±ÃŽÂ¹ ÃŽÂ½ÃŽÂ­ÃŽÂ¿.")
         else:
-            logging.info("[TOKEN VALID] âœ… Î¤Î¿ token ÎµÎ¯Î½Î±Î¹ Î­Î³ÎºÏ…ÏÎ¿.")
+            logging.info("[TOKEN VALID] Ã¢Å“â€¦ ÃŽÂ¤ÃŽÂ¿ token ÃŽÂµÃŽÂ¯ÃŽÂ½ÃŽÂ±ÃŽÂ¹ ÃŽÂ­ÃŽÂ³ÃŽÂºÃâ€¦ÃÂÃŽÂ¿.")
         time.sleep(CHECK_INTERVAL)
 
 if __name__ == "__main__":

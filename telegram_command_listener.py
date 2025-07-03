@@ -1,8 +1,8 @@
-import requests
+﻿import requests
 import subprocess
 import time
 
-# === Î¡Î¥Î˜ÎœÎ™Î£Î•Î™Î£ ===
+# === ÃŽÂ¡ÃŽÂ¥ÃŽËœÃŽÅ“ÃŽâ„¢ÃŽÂ£ÃŽâ€¢ÃŽâ„¢ÃŽÂ£ ===
 TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
@@ -21,7 +21,7 @@ def get_updates():
         result = response.json()["result"]
         return result
     except Exception as e:
-        print("Î£Ï†Î¬Î»Î¼Î± ÏƒÏ„Î¿ get_updates:", e)
+        print("ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± ÃÆ’Ãâ€žÃŽÂ¿ get_updates:", e)
         return []
 
 def execute_command(cmd):
@@ -31,11 +31,11 @@ def execute_command(cmd):
     except subprocess.CalledProcessError as e:
         return e.output.decode("utf-8")
     except Exception as e:
-        return f"Î£Ï†Î¬Î»Î¼Î±: {str(e)}"
+        return f"ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ±: {str(e)}"
 
 # === MAIN LOOP ===
-print("ðŸ›° Lucien Command Listener ÎµÎ½ÎµÏÎ³ÏŒÏ‚.")
-send_message("ðŸ›° Lucien Command Listener ÎµÎ½ÎµÏÎ³ÏŒÏ‚.")
+print("Ã°Å¸â€ºÂ° Lucien Command Listener ÃŽÂµÃŽÂ½ÃŽÂµÃÂÃŽÂ³ÃÅ’Ãâ€š.")
+send_message("Ã°Å¸â€ºÂ° Lucien Command Listener ÃŽÂµÃŽÂ½ÃŽÂµÃÂÃŽÂ³ÃÅ’Ãâ€š.")
 
 while True:
     updates = get_updates()
@@ -48,7 +48,7 @@ while True:
         print(f"[{sender_id}] -> {text}")  # DEBUG
 
         if sender_id != CHAT_ID:
-            send_message("â›” Î†ÏÎ½Î·ÏƒÎ· Ï€ÏÏŒÏƒÎ²Î±ÏƒÎ·Ï‚.")
+            send_message("Ã¢â€ºâ€ ÃŽâ€ ÃÂÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ· Ãâ‚¬ÃÂÃÅ’ÃÆ’ÃŽÂ²ÃŽÂ±ÃÆ’ÃŽÂ·Ãâ€š.")
             continue
 
         if not text:
@@ -56,9 +56,9 @@ while True:
 
         result = execute_command(text)
         if not result.strip():
-            result = "âœ… Î•Î½Ï„Î¿Î»Î® ÎµÎºÏ„ÎµÎ»Î­ÏƒÏ„Î·ÎºÎµ Ï‡Ï‰ÏÎ¯Ï‚ Î­Î¾Î¿Î´Î¿."
+            result = "Ã¢Å“â€¦ ÃŽâ€¢ÃŽÂ½Ãâ€žÃŽÂ¿ÃŽÂ»ÃŽÂ® ÃŽÂµÃŽÂºÃâ€žÃŽÂµÃŽÂ»ÃŽÂ­ÃÆ’Ãâ€žÃŽÂ·ÃŽÂºÃŽÂµ Ãâ€¡Ãâ€°ÃÂÃŽÂ¯Ãâ€š ÃŽÂ­ÃŽÂ¾ÃŽÂ¿ÃŽÂ´ÃŽÂ¿."
         elif len(result) > 4000:
-            result = result[:4000] + "\n...Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Ï€ÎµÏÎ¹ÎºÏŒÏ€Î·ÎºÎµ."
+            result = result[:4000] + "\n...ÃŽÂ±Ãâ‚¬ÃŽÂ¬ÃŽÂ½Ãâ€žÃŽÂ·ÃÆ’ÃŽÂ· Ãâ‚¬ÃŽÂµÃÂÃŽÂ¹ÃŽÂºÃÅ’Ãâ‚¬ÃŽÂ·ÃŽÂºÃŽÂµ."
 
-        send_message(f"ðŸ“¤ Î‘Ï€Î¬Î½Ï„Î·ÏƒÎ·:\n{result}")
+        send_message(f"Ã°Å¸â€œÂ¤ ÃŽâ€˜Ãâ‚¬ÃŽÂ¬ÃŽÂ½Ãâ€žÃŽÂ·ÃÆ’ÃŽÂ·:\n{result}")
     time.sleep(2)

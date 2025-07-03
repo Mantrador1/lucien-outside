@@ -1,4 +1,4 @@
-from flask import Flask, request
+﻿from flask import Flask, request
 import requests
 import datetime
 import json
@@ -26,7 +26,7 @@ def log_command(text):
 @app.route("/", methods=["POST"])
 def webhook():
     data = request.get_json()
-    print("âž¡ ÎÎ­Î¿ Î¼Î®Î½Ï…Î¼Î± Î±Ï€ÏŒ Telegram:")
+    print("Ã¢Å¾Â¡ ÃŽÂÃŽÂ­ÃŽÂ¿ ÃŽÂ¼ÃŽÂ®ÃŽÂ½Ãâ€¦ÃŽÂ¼ÃŽÂ± ÃŽÂ±Ãâ‚¬ÃÅ’ Telegram:")
     print(json.dumps(data, indent=4, ensure_ascii=False))
 
     if "message" in data and "chat" in data["message"]:
@@ -35,18 +35,18 @@ def webhook():
         log_command(user_text)
 
         if chat_id != AUTHORIZED_CHAT_ID:
-            send_message(chat_id, "ðŸš« Unauthorized access.")
+            send_message(chat_id, "Ã°Å¸Å¡Â« Unauthorized access.")
             return "unauthorized", 403
 
         if "status" in user_text:
-            reply = "ðŸ“¡ ÎŸ Lucien ÎµÎ¯Î½Î±Î¹ ÎµÎ½ÎµÏÎ³ÏŒÏ‚ ÎºÎ±Î¹ Î±ÎºÎ¿ÏÎµÎ¹."
-        elif "Î­Î»ÎµÎ³Ï‡Î¿" in user_text:
-            reply = "ðŸ§  Î•ÎºÏ„ÎµÎ»ÏŽ Î­Î»ÎµÎ³Ï‡Î¿ Ï…Ï€Î¿ÏƒÏ…ÏƒÏ„Î·Î¼Î¬Ï„Ï‰Î½..."
-        elif "ÎµÎ¯ÏƒÎ±Î¹ ok" in user_text:
-            reply = "âœ… ÎŸ Lucien ÎµÎ¯Î½Î±Î¹ ÏŒÎ»Î± ÎºÎ±Î»Î¬. Î£Ï‡Î¬ÏÎ±Î¼Îµ!"
+            reply = "Ã°Å¸â€œÂ¡ ÃŽÅ¸ Lucien ÃŽÂµÃŽÂ¯ÃŽÂ½ÃŽÂ±ÃŽÂ¹ ÃŽÂµÃŽÂ½ÃŽÂµÃÂÃŽÂ³ÃÅ’Ãâ€š ÃŽÂºÃŽÂ±ÃŽÂ¹ ÃŽÂ±ÃŽÂºÃŽÂ¿ÃÂÃŽÂµÃŽÂ¹."
+        elif "ÃŽÂ­ÃŽÂ»ÃŽÂµÃŽÂ³Ãâ€¡ÃŽÂ¿" in user_text:
+            reply = "Ã°Å¸Â§Â  ÃŽâ€¢ÃŽÂºÃâ€žÃŽÂµÃŽÂ»ÃÅ½ ÃŽÂ­ÃŽÂ»ÃŽÂµÃŽÂ³Ãâ€¡ÃŽÂ¿ Ãâ€¦Ãâ‚¬ÃŽÂ¿ÃÆ’Ãâ€¦ÃÆ’Ãâ€žÃŽÂ·ÃŽÂ¼ÃŽÂ¬Ãâ€žÃâ€°ÃŽÂ½..."
+        elif "ÃŽÂµÃŽÂ¯ÃÆ’ÃŽÂ±ÃŽÂ¹ ok" in user_text:
+            reply = "Ã¢Å“â€¦ ÃŽÅ¸ Lucien ÃŽÂµÃŽÂ¯ÃŽÂ½ÃŽÂ±ÃŽÂ¹ ÃÅ’ÃŽÂ»ÃŽÂ± ÃŽÂºÃŽÂ±ÃŽÂ»ÃŽÂ¬. ÃŽÂ£Ãâ€¡ÃŽÂ¬ÃÂÃŽÂ±ÃŽÂ¼ÃŽÂµ!"
         else:
-            fname = data["message"]["from"].get("first_name", "Î¦Î¯Î»Îµ")
-            reply = f"ðŸ‘‹ Î“ÎµÎ¹Î± ÏƒÎ¿Ï… {fname}! Î•Î¯Ï€ÎµÏ‚: â€œ{user_text}â€"
+            fname = data["message"]["from"].get("first_name", "ÃŽÂ¦ÃŽÂ¯ÃŽÂ»ÃŽÂµ")
+            reply = f"Ã°Å¸â€˜â€¹ ÃŽâ€œÃŽÂµÃŽÂ¹ÃŽÂ± ÃÆ’ÃŽÂ¿Ãâ€¦ {fname}! ÃŽâ€¢ÃŽÂ¯Ãâ‚¬ÃŽÂµÃâ€š: Ã¢â‚¬Å“{user_text}Ã¢â‚¬Â"
 
         send_message(chat_id, reply)
 
