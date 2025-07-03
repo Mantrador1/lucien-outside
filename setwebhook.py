@@ -8,5 +8,5 @@ response = requests.get(
     params={"url": WEBHOOK_URL}
 )
 
-print("🔗 Webhook Set Response:")
+print("ðŸ”— Webhook Set Response:")
 print(response.json())

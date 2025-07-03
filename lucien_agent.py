@@ -12,13 +12,13 @@ def ask_lucien(prompt):
     if response.status_code == 200:
         return response.json()["response"]
     else:
-        print("❌ Error:", response.text)
+        print("âŒ Error:", response.text)
         return None
 
 if __name__ == "__main__":
     while True:
-        prompt = input("👤 Εσύ: ")
+        prompt = input("ðŸ‘¤ Î•ÏƒÏ: ")
         if prompt.lower() in ["exit", "quit"]:
             break
         reply = ask_lucien(prompt)
-        print("🤖 Lucien:", reply)
+        print("ðŸ¤– Lucien:", reply)

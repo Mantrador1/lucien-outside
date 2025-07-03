@@ -4,7 +4,7 @@ import logging
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.environ.get("CHAT_ID")
-CHECK_INTERVAL = 60  # έλεγχος κάθε 60 δευτερόλεπτα
+CHECK_INTERVAL = 60  # Î­Î»ÎµÎ³Ï‡Î¿Ï‚ ÎºÎ¬Î¸Îµ 60 Î´ÎµÏ…Ï„ÎµÏÏŒÎ»ÎµÏ€Ï„Î±
 
 logging.basicConfig(level=logging.INFO)
 
@@ -30,10 +30,10 @@ def main():
     while True:
         valid = is_token_valid()
         if not valid:
-            logging.warning("[TOKEN EXPIRED] 🔥 Το Telegram Bot Token φαίνεται invalid!")
-            send_alert("⚠️ Το Telegram Bot Token έπαψε να ισχύει! Χρειάζεται νέο.")
+            logging.warning("[TOKEN EXPIRED] ðŸ”¥ Î¤Î¿ Telegram Bot Token Ï†Î±Î¯Î½ÎµÏ„Î±Î¹ invalid!")
+            send_alert("âš ï¸ Î¤Î¿ Telegram Bot Token Î­Ï€Î±ÏˆÎµ Î½Î± Î¹ÏƒÏ‡ÏÎµÎ¹! Î§ÏÎµÎ¹Î¬Î¶ÎµÏ„Î±Î¹ Î½Î­Î¿.")
         else:
-            logging.info("[TOKEN VALID] ✅ Το token είναι έγκυρο.")
+            logging.info("[TOKEN VALID] âœ… Î¤Î¿ token ÎµÎ¯Î½Î±Î¹ Î­Î³ÎºÏ…ÏÎ¿.")
         time.sleep(CHECK_INTERVAL)
 
 if __name__ == "__main__":

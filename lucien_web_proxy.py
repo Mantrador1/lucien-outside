@@ -4,10 +4,10 @@ import os
 
 app = Flask(__name__)
 
-# ✅ Μνήμη ανά IP (απλό dictionary προσωρινά)
+# âœ… ÎœÎ½Î®Î¼Î· Î±Î½Î¬ IP (Î±Ï€Î»ÏŒ dictionary Ï€ÏÎ¿ÏƒÏ‰ÏÎ¹Î½Î¬)
 memory = {}
 
-# 🔐 OpenRouter API Key
+# ðŸ” OpenRouter API Key
 OPENROUTER_API_KEY = "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"
 
 @app.route('/')
@@ -43,7 +43,7 @@ def ask():
         memory[user_ip].append({"role": "assistant", "content": reply})
         return jsonify({"response": reply})
     else:
-        return jsonify({"response": "⚠️ Σφάλμα με OpenRouter API."}), 500
+        return jsonify({"response": "âš ï¸ Î£Ï†Î¬Î»Î¼Î± Î¼Îµ OpenRouter API."}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)

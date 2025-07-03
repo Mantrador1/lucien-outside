@@ -14,7 +14,7 @@ client = Client(options)
 target_folder = "/Lucien_Uploads"
 local_folder = "C:/lucien_proxy/uploads"
 
-# Δημιουργεί φάκελο στο cloud αν δεν υπάρχει
+# Î”Î·Î¼Î¹Î¿Ï…ÏÎ³ÎµÎ¯ Ï†Î¬ÎºÎµÎ»Î¿ ÏƒÏ„Î¿ cloud Î±Î½ Î´ÎµÎ½ Ï…Ï€Î¬ÏÏ‡ÎµÎ¹
 if not client.check(target_folder):
     client.mkdir(target_folder)
 
@@ -38,9 +38,9 @@ while True:
             remote_path = f"{target_folder}/{filename}"
             client.upload_sync(remote_path=remote_path, local_path=full_path)
             uploaded[filename] = checksum
-            print(f"✅ Synced: {filename}")
+            print(f"âœ… Synced: {filename}")
 
     except Exception as e:
-        print(f"⚠️ Error: {str(e)}")
+        print(f"âš ï¸ Error: {str(e)}")
 
-    time.sleep(900)  # κάθε 15 λεπτά
+    time.sleep(900)  # ÎºÎ¬Î¸Îµ 15 Î»ÎµÏ€Ï„Î¬

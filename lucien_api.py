@@ -26,7 +26,7 @@ def log_command(text):
 @app.route("/", methods=["POST"])
 def webhook():
     data = request.get_json()
-    print("➡ Νέο μήνυμα από Telegram:")
+    print("âž¡ ÎÎ­Î¿ Î¼Î®Î½Ï…Î¼Î± Î±Ï€ÏŒ Telegram:")
     print(json.dumps(data, indent=4, ensure_ascii=False))
 
     if "message" in data and "chat" in data["message"]:
@@ -35,18 +35,18 @@ def webhook():
         log_command(user_text)
 
         if chat_id != AUTHORIZED_CHAT_ID:
-            send_message(chat_id, "🚫 Unauthorized access.")
+            send_message(chat_id, "ðŸš« Unauthorized access.")
             return "unauthorized", 403
 
         if "status" in user_text:
-            reply = "📡 Ο Lucien είναι ενεργός και ακούει."
-        elif "έλεγχο" in user_text:
-            reply = "🧠 Εκτελώ έλεγχο υποσυστημάτων..."
-        elif "είσαι ok" in user_text:
-            reply = "✅ Ο Lucien είναι όλα καλά. Σχάραμε!"
+            reply = "ðŸ“¡ ÎŸ Lucien ÎµÎ¯Î½Î±Î¹ ÎµÎ½ÎµÏÎ³ÏŒÏ‚ ÎºÎ±Î¹ Î±ÎºÎ¿ÏÎµÎ¹."
+        elif "Î­Î»ÎµÎ³Ï‡Î¿" in user_text:
+            reply = "ðŸ§  Î•ÎºÏ„ÎµÎ»ÏŽ Î­Î»ÎµÎ³Ï‡Î¿ Ï…Ï€Î¿ÏƒÏ…ÏƒÏ„Î·Î¼Î¬Ï„Ï‰Î½..."
+        elif "ÎµÎ¯ÏƒÎ±Î¹ ok" in user_text:
+            reply = "âœ… ÎŸ Lucien ÎµÎ¯Î½Î±Î¹ ÏŒÎ»Î± ÎºÎ±Î»Î¬. Î£Ï‡Î¬ÏÎ±Î¼Îµ!"
         else:
-            fname = data["message"]["from"].get("first_name", "Φίλε")
-            reply = f"👋 Γεια σου {fname}! Είπες: “{user_text}”"
+            fname = data["message"]["from"].get("first_name", "Î¦Î¯Î»Îµ")
+            reply = f"ðŸ‘‹ Î“ÎµÎ¹Î± ÏƒÎ¿Ï… {fname}! Î•Î¯Ï€ÎµÏ‚: â€œ{user_text}â€"
 
         send_message(chat_id, reply)
 

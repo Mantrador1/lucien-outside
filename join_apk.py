@@ -12,4 +12,4 @@ with open("LucienX_app.apk","wb") as out:
         if os.path.exists(p):
             data = open(p).read()
             out.write(base64.b64decode(fix_pad(data)))
-print("✅ LucienX_app.apk created successfully.")
+print("âœ… LucienX_app.apk created successfully.")
