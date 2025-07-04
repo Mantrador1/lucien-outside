@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import os
 import subprocess
 import time
@@ -7,7 +8,7 @@ FLY_TOKEN = "fo1_0b2cmKKV7ddaE-nfOUJud9iQqTi6OaJtSGcxva1p0uk"
 APP_NAME = "lucien-outside"
 REGION = "ams"  # Amsterdam
 REPO_URL = "https://github.com/Mantrador1/lucien-proxy.git"
-OPENROUTER_KEY = "ΒΑΛΕ_ΕΔΩ_ΤΟ_API_KEY_ΣΟΥ"
+OPENROUTER_KEY = "Î’Î‘Î›Î•_Î•Î”Î©_Î¤ÎŸ_API_KEY_Î£ÎŸÎ¥"
 
 # === STEP 1: Configure environment ===
 os.environ["FLY_API_TOKEN"] = FLY_TOKEN
@@ -28,4 +29,4 @@ subprocess.run(["flyctl", "secrets", "set", f"OPENROUTER_API_KEY={OPENROUTER_KEY
 subprocess.run(["flyctl", "deploy", "--force"], check=True)
 
 # === STEP 6: Confirm ===
-print(f"\n🚀 Deployment complete! Access Lucien at:\n➡️ https://{APP_NAME}.fly.dev/ask")
+print(f"\nðŸš€ Deployment complete! Access Lucien at:\nâž¡ï¸ https://{APP_NAME}.fly.dev/ask")

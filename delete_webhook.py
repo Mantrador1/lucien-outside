@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import requests
 
 TOKEN = "1837395252:AAHARRlyNcLiLUFXeoSXWnwt-LKRE0mF7c"

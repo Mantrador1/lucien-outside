@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify
 import requests
 
@@ -32,7 +33,7 @@ def ask():
     )
 
     result = response.json()
-    answer = result.get("response", "[â›” No response]")
+    answer = result.get("response", "[Ã¢â€ºâ€ No response]")
 
     last_prompt = user_input
     last_response = answer

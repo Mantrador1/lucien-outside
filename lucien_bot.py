@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import telebot
 import subprocess
 
@@ -7,7 +8,7 @@ bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "Ã°Å¸â€â€œ Lucien Core online. Send /run <command> or /code <python>")
+    bot.reply_to(message, "ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ¢â‚¬Å“ Lucien Core online. Send /run <command> or /code <python>")
 
 @bot.message_handler(func=lambda message: True)
 def handle_all(message):
@@ -18,23 +19,23 @@ def handle_all(message):
         try:
             result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, text=True, timeout=10)
         except subprocess.CalledProcessError as e:
-            result = f"[Ã¢ÂÅ’ Error]\n{e.output}"
+            result = f"[ÃƒÂ¢Ã‚ÂÃ…â€™ Error]\n{e.output}"
         except Exception as e:
-            result = f"[Ã¢Å¡Â Ã¯Â¸Â Exception] {e}"
-        bot.reply_to(message, f"[Ã°Å¸â€“Â¥ Output]\n{result}")
+            result = f"[ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â Exception] {e}"
+        bot.reply_to(message, f"[ÃƒÂ°Ã…Â¸Ã¢â‚¬â€œÃ‚Â¥ Output]\n{result}")
 
     elif user_input.startswith("/code "):
         code = user_input[6:]
         try:
             exec_locals = {}
             exec(code, {}, exec_locals)
-            result = exec_locals.get("result", "[Ã¢Å“â€¦ Executed]")
+            result = exec_locals.get("result", "[ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ Executed]")
         except Exception as e:
-            result = f"[Ã¢Å¡Â Ã¯Â¸Â Exception] {e}"
+            result = f"[ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â Exception] {e}"
         bot.reply_to(message, str(result))
 
     else:
-        bot.reply_to(message, f"Ã°Å¸Å¸Â¢ Lucien ÃŽÂµÃŽÂ´ÃÅ½. ÃŽÂ£Ãâ€žÃŽÂµÃŽÂ¯ÃŽÂ»ÃŽÂµ `/run` ÃŽÂ³ÃŽÂ¹ÃŽÂ± command ÃŽÂ® `/code` ÃŽÂ³ÃŽÂ¹ÃŽÂ± Python.")
+        bot.reply_to(message, f"ÃƒÂ°Ã…Â¸Ã…Â¸Ã‚Â¢ Lucien ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â´ÃƒÂÃ…Â½. ÃƒÅ½Ã‚Â£ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â¯ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Âµ `/run` ÃƒÅ½Ã‚Â³ÃƒÅ½Ã‚Â¹ÃƒÅ½Ã‚Â± command ÃƒÅ½Ã‚Â® `/code` ÃƒÅ½Ã‚Â³ÃƒÅ½Ã‚Â¹ÃƒÅ½Ã‚Â± Python.")
 
-print("Ã¢Å“â€¦ Lucien Bot with Executor running...")
+print("ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ Lucien Bot with Executor running...")
 bot.polling()

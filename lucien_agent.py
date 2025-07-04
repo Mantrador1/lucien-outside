@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import requests
 
 PROXY_URL = "https://lucien-proxy-production.up.railway.app/ask"
@@ -12,13 +13,13 @@ def ask_lucien(prompt):
     if response.status_code == 200:
         return response.json()["response"]
     else:
-        print("Ã¢ÂÅ’ Error:", response.text)
+        print("ÃƒÂ¢Ã‚ÂÃ…â€™ Error:", response.text)
         return None
 
 if __name__ == "__main__":
     while True:
-        prompt = input("Ã°Å¸â€˜Â¤ ÃŽâ€¢ÃÆ’ÃÂ: ")
+        prompt = input("ÃƒÂ°Ã…Â¸Ã¢â‚¬ËœÃ‚Â¤ ÃƒÅ½Ã¢â‚¬Â¢ÃƒÂÃ†â€™ÃƒÂÃ‚Â: ")
         if prompt.lower() in ["exit", "quit"]:
             break
         reply = ask_lucien(prompt)
-        print("Ã°Å¸Â¤â€“ Lucien:", reply)
+        print("ÃƒÂ°Ã…Â¸Ã‚Â¤Ã¢â‚¬â€œ Lucien:", reply)

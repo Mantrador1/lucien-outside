@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 from waitress import serve
 from main import app
 

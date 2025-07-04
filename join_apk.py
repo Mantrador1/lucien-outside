@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import os, base64
 
 parts = ["lucienx_part1.txt","lucienx_part2.txt",
@@ -12,4 +13,4 @@ with open("LucienX_app.apk","wb") as out:
         if os.path.exists(p):
             data = open(p).read()
             out.write(base64.b64decode(fix_pad(data)))
-print("Ã¢Å“â€¦ LucienX_app.apk created successfully.")
+print("ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ LucienX_app.apk created successfully.")

@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import os
 import time
 import hashlib
@@ -14,7 +15,7 @@ client = Client(options)
 target_folder = "/Lucien_Uploads"
 local_folder = "C:/lucien_proxy/uploads"
 
-# ÃŽâ€ÃŽÂ·ÃŽÂ¼ÃŽÂ¹ÃŽÂ¿Ãâ€¦ÃÂÃŽÂ³ÃŽÂµÃŽÂ¯ Ãâ€ ÃŽÂ¬ÃŽÂºÃŽÂµÃŽÂ»ÃŽÂ¿ ÃÆ’Ãâ€žÃŽÂ¿ cloud ÃŽÂ±ÃŽÂ½ ÃŽÂ´ÃŽÂµÃŽÂ½ Ãâ€¦Ãâ‚¬ÃŽÂ¬ÃÂÃâ€¡ÃŽÂµÃŽÂ¹
+# ÃƒÅ½Ã¢â‚¬ÂÃƒÅ½Ã‚Â·ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â¹ÃƒÅ½Ã‚Â¿ÃƒÂÃ¢â‚¬Â¦ÃƒÂÃ‚ÂÃƒÅ½Ã‚Â³ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â¯ ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¿ ÃƒÂÃ†â€™ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¿ cloud ÃƒÅ½Ã‚Â±ÃƒÅ½Ã‚Â½ ÃƒÅ½Ã‚Â´ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â½ ÃƒÂÃ¢â‚¬Â¦ÃƒÂÃ¢â€šÂ¬ÃƒÅ½Ã‚Â¬ÃƒÂÃ‚ÂÃƒÂÃ¢â‚¬Â¡ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â¹
 if not client.check(target_folder):
     client.mkdir(target_folder)
 
@@ -38,9 +39,9 @@ while True:
             remote_path = f"{target_folder}/{filename}"
             client.upload_sync(remote_path=remote_path, local_path=full_path)
             uploaded[filename] = checksum
-            print(f"Ã¢Å“â€¦ Synced: {filename}")
+            print(f"ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ Synced: {filename}")
 
     except Exception as e:
-        print(f"Ã¢Å¡Â Ã¯Â¸Â Error: {str(e)}")
+        print(f"ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â Error: {str(e)}")
 
-    time.sleep(900)  # ÃŽÂºÃŽÂ¬ÃŽÂ¸ÃŽÂµ 15 ÃŽÂ»ÃŽÂµÃâ‚¬Ãâ€žÃŽÂ¬
+    time.sleep(900)  # ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â¸ÃƒÅ½Ã‚Âµ 15 ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚ÂµÃƒÂÃ¢â€šÂ¬ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¬

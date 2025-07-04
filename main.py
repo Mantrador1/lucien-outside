@@ -1,54 +1,36 @@
-﻿from flask import Flask, request, jsonify
+﻿import os
 import requests
-import os
+from flask import Flask, request, jsonify, make_response
 
 app = Flask(__name__)
-
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
-
-@app.route("/")
-def home():
-    return "Lucien is running."
 
 @app.route("/ask", methods=["POST"])
 def ask():
+    data = request.get_json()
+    prompt = data.get("prompt", "")
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://lucien.localhost",
+        "X-Title": "Lucien Proxy",
+    }
+    body = {
+        "model": "mistral:7b-instruct",
+        "messages": [
+            {"role": "system", "content": "Είσαι ο Lucien. Έξυπνος, σύντομος και απόλυτος."},
+            {"role": "user", "content": prompt}
+        ]
+    }
     try:
-        data = request.get_json()
-        prompt = data.get("prompt")
-
-        if not prompt:
-            return jsonify({"error": "Missing 'prompt'"}), 400
-
-        headers = {
-            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-            "Content-Type": "application/json"
-        }
-
-        payload = {
-            "model": "openai/gpt-4",
-            "messages": [
-                {"role": "system", "content": "Απαντάς στα ελληνικά, είσαι ο Λυσιέν, ένας ήρεμος, έξυπνος, στρατηγικός AI."},
-                {"role": "user", "content": prompt}
-            ]
-        }
-
-        response = requests.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers=headers,
-            json=payload,
-            timeout=30
-        )
-
-        if response.status_code != 200:
-            return jsonify({"error": f"OpenRouter API error: {response.text}"}), 500
-
+        response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
         result = response.json()
-        answer = result["choices"][0]["message"]["content"]
-
-        return jsonify({"response": answer})
-
+        reply = result["choices"][0]["message"]["content"]
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        reply = f"⚠️ Σφάλμα AI: {str(e)}"
+    resp = make_response(jsonify({"response": reply}))
+    resp.headers["Content-Type"] = "application/json; charset=utf-8"
+    return resp
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

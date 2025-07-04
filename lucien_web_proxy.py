@@ -1,14 +1,15 @@
+﻿# -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify, send_from_directory
 import requests
 import os
 
 app = Flask(__name__)
 
-# Ã¢Å“â€¦ ÃŽÅ“ÃŽÂ½ÃŽÂ®ÃŽÂ¼ÃŽÂ· ÃŽÂ±ÃŽÂ½ÃŽÂ¬ IP (ÃŽÂ±Ãâ‚¬ÃŽÂ»ÃÅ’ dictionary Ãâ‚¬ÃÂÃŽÂ¿ÃÆ’Ãâ€°ÃÂÃŽÂ¹ÃŽÂ½ÃŽÂ¬)
+# ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ ÃƒÅ½Ã…â€œÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â®ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â· ÃƒÅ½Ã‚Â±ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â¬ IP (ÃƒÅ½Ã‚Â±ÃƒÂÃ¢â€šÂ¬ÃƒÅ½Ã‚Â»ÃƒÂÃ…â€™ dictionary ÃƒÂÃ¢â€šÂ¬ÃƒÂÃ‚ÂÃƒÅ½Ã‚Â¿ÃƒÂÃ†â€™ÃƒÂÃ¢â‚¬Â°ÃƒÂÃ‚ÂÃƒÅ½Ã‚Â¹ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â¬)
 memory = {}
 
-# Ã°Å¸â€Â OpenRouter API Key
-OPENROUTER_API_KEY = "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"
+# ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ‚Â OpenRouter API Key
+OPENROUTER_API_KEY = "sk-or-v1-ΔΩΣΕ_ΕΔΩ_ΤΟ_ΝΕΟ_ΚΛΕΙΔΙ"
 
 @app.route('/')
 def home():
@@ -43,7 +44,7 @@ def ask():
         memory[user_ip].append({"role": "assistant", "content": reply})
         return jsonify({"response": reply})
     else:
-        return jsonify({"response": "Ã¢Å¡Â Ã¯Â¸Â ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± ÃŽÂ¼ÃŽÂµ OpenRouter API."}), 500
+        return jsonify({"response": "ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â ÃƒÅ½Ã‚Â£ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â± ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Âµ OpenRouter API."}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)

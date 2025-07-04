@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 from sqlalchemy import create_engine, Column, String, Text, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import UUID
@@ -33,4 +34,4 @@ test_entry = MemoryLog(
 
 session.add(test_entry)
 session.commit()
-print("✅ Table created and test memory inserted.")
+print("âœ… Table created and test memory inserted.")

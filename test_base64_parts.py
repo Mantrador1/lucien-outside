@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import base64
 
 parts = [
@@ -22,4 +23,4 @@ for part in parts:
     with open(part, "r") as f:
         data = f.read()
         valid = is_valid_base64(data)
-        print(f"{part}: {'Ã¢Å“â€¦ OK' if valid else 'Ã¢ÂÅ’ INVALID'}")
+        print(f"{part}: {'ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ OK' if valid else 'ÃƒÂ¢Ã‚ÂÃ…â€™ INVALID'}")

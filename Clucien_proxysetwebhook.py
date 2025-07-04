@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import requests
 
 TOKEN = os.environ.get("BOT_TOKEN")

@@ -1,7 +1,8 @@
+﻿# -*- coding: utf-8 -*-
 import requests
 import time
 
-# ÃŽÂ¦ÃÅ’ÃÂÃâ€žÃâ€°ÃÆ’ÃŽÂ· ÃÂÃâ€¦ÃŽÂ¸ÃŽÂ¼ÃŽÂ¯ÃÆ’ÃŽÂµÃâ€°ÃŽÂ½ ÃŽÂ±Ãâ‚¬ÃÅ’ lucien.cfg
+# ÃƒÅ½Ã‚Â¦ÃƒÂÃ…â€™ÃƒÂÃ‚ÂÃƒÂÃ¢â‚¬Å¾ÃƒÂÃ¢â‚¬Â°ÃƒÂÃ†â€™ÃƒÅ½Ã‚Â· ÃƒÂÃ‚ÂÃƒÂÃ¢â‚¬Â¦ÃƒÅ½Ã‚Â¸ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â¯ÃƒÂÃ†â€™ÃƒÅ½Ã‚ÂµÃƒÂÃ¢â‚¬Â°ÃƒÅ½Ã‚Â½ ÃƒÅ½Ã‚Â±ÃƒÂÃ¢â€šÂ¬ÃƒÂÃ…â€™ lucien.cfg
 config = {}
 with open("lucien.cfg", "r") as f:
     for line in f:
@@ -27,7 +28,7 @@ def get_updates():
             last_update_id = result[-1]["update_id"] + 1
         return result
     except Exception as e:
-        print("Ã¢ÂÅ’ ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± get_updates:", e)
+        print("ÃƒÂ¢Ã‚ÂÃ…â€™ ÃƒÅ½Ã‚Â£ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â± get_updates:", e)
         return []
 
 def send_message(chat_id, text):
@@ -35,20 +36,20 @@ def send_message(chat_id, text):
     try:
         requests.post(SEND_MESSAGE_URL, data=data)
     except Exception as e:
-        print("Ã¢ÂÅ’ ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± send_message:", e)
+        print("ÃƒÂ¢Ã‚ÂÃ…â€™ ÃƒÅ½Ã‚Â£ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â± send_message:", e)
 
-# ÃŽÅ¡ÃÂÃÂÃŽÂ¹ÃŽÂ¿Ãâ€š ÃŽÂ²ÃÂÃÅ’Ãâ€¡ÃŽÂ¿Ãâ€š
+# ÃƒÅ½Ã…Â¡ÃƒÂÃ‚ÂÃƒÂÃ‚ÂÃƒÅ½Ã‚Â¹ÃƒÅ½Ã‚Â¿ÃƒÂÃ¢â‚¬Å¡ ÃƒÅ½Ã‚Â²ÃƒÂÃ‚ÂÃƒÂÃ…â€™ÃƒÂÃ¢â‚¬Â¡ÃƒÅ½Ã‚Â¿ÃƒÂÃ¢â‚¬Å¡
 while True:
     updates = get_updates()
     for update in updates:
         if "message" in update and "text" in update["message"]:
             user_input = update["message"]["text"]
-            print("Ã°Å¸â€œÂ© ÃŽâ€ºÃŽÂ®Ãâ€ ÃŽÂ¸ÃŽÂ·ÃŽÂºÃŽÂµ ÃŽÂ¼ÃŽÂ®ÃŽÂ½Ãâ€¦ÃŽÂ¼ÃŽÂ±:", user_input)
+            print("ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â© ÃƒÅ½Ã¢â‚¬ÂºÃƒÅ½Ã‚Â®ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¸ÃƒÅ½Ã‚Â·ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚Âµ ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â®ÃƒÅ½Ã‚Â½ÃƒÂÃ¢â‚¬Â¦ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â±:", user_input)
 
             try:
                 response = requests.post(API_URL, headers={"Authorization": f"Bearer {os.environ.get(\"OPENROUTER_API_KEY\", \"\")}"}, json={"prompt": user_input})
-                reply = response.json().get("response", "Ã¢Å¡Â Ã¯Â¸Â ÃŽâ€ÃŽÂµÃŽÂ½ Ãâ‚¬ÃŽÂ®ÃÂÃŽÂµ ÃŽÂ±Ãâ‚¬ÃŽÂ¬ÃŽÂ½Ãâ€žÃŽÂ·ÃÆ’ÃŽÂ·.")
+                reply = response.json().get("response", "ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â ÃƒÅ½Ã¢â‚¬ÂÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â½ ÃƒÂÃ¢â€šÂ¬ÃƒÅ½Ã‚Â®ÃƒÂÃ‚ÂÃƒÅ½Ã‚Âµ ÃƒÅ½Ã‚Â±ÃƒÂÃ¢â€šÂ¬ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â½ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â·ÃƒÂÃ†â€™ÃƒÅ½Ã‚Â·.")
                 send_message(CHAT_ID, reply)
             except Exception as e:
-                print("Ã¢Å¡Â Ã¯Â¸Â ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± ÃÆ’ÃÂÃŽÂ½ÃŽÂ´ÃŽÂµÃÆ’ÃŽÂ·Ãâ€š ÃŽÂ¼ÃŽÂµ Lucien API:", e)
+                print("ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â ÃƒÅ½Ã‚Â£ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â± ÃƒÂÃ†â€™ÃƒÂÃ‚ÂÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â´ÃƒÅ½Ã‚ÂµÃƒÂÃ†â€™ÃƒÅ½Ã‚Â·ÃƒÂÃ¢â‚¬Å¡ ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Âµ Lucien API:", e)
     time.sleep(2)

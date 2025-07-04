@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import psycopg2
 
 DATABASE_URL = 'PASTE_YOUR_REAL_DATABASE_URL_HERE'  # <--- Replace with your actual DATABASE_URL

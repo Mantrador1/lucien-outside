@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import requests
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
@@ -8,5 +9,5 @@ response = requests.get(
     params={"url": WEBHOOK_URL}
 )
 
-print("Ã°Å¸â€â€” Webhook Set Response:")
+print("ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ¢â‚¬â€ Webhook Set Response:")
 print(response.json())

