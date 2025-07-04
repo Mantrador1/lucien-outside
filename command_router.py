@@ -1,4 +1,4 @@
-﻿# command_router.py
+# command_router.py
 
 from memory import get_last_messages
 

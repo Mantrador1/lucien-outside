@@ -1,4 +1,4 @@
-﻿name: 🚀 Deploy to Fly.io with submodules
+name: 🚀 Deploy to Fly.io with submodules
 on:
   push:
     branches:

@@ -1,4 +1,4 @@
-﻿import requests
+import requests
 
 TOKEN = os.environ.get("BOT_TOKEN")
 URL = f"https://api.telegram.org/bot{TOKEN}/setWebhook"

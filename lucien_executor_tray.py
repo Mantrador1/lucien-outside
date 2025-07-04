@@ -1,4 +1,4 @@
-﻿import telebot
+import telebot
 import io, contextlib, os, time, traceback
 
 TOKEN = os.environ.get("BOT_TOKEN")

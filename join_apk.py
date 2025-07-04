@@ -1,4 +1,4 @@
-﻿import os, base64
+import os, base64
 
 parts = ["lucienx_part1.txt","lucienx_part2.txt",
          "lucienx_part3.txt","lucienx_part4.txt"]

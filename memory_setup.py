@@ -1,4 +1,4 @@
-﻿from sqlalchemy import create_engine, Column, String, Text, TIMESTAMP
+from sqlalchemy import create_engine, Column, String, Text, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import sessionmaker

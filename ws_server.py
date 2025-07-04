@@ -1,4 +1,4 @@
-﻿import asyncio
+import asyncio
 import websockets
 
 async def handler(websocket, path):

@@ -1,4 +1,4 @@
-﻿import telebot
+import telebot
 import io, contextlib, os, time, traceback
 
 # ÃŽâ€¢ÃŽÂ´ÃÅ½ ÃŽÂ²ÃŽÂ¬ÃŽÂ»ÃŽÂµ Ãâ€žÃŽÂ¿ ÃŽÂ´ÃŽÂ¹ÃŽÂºÃÅ’ ÃÆ’ÃŽÂ¿Ãâ€¦ TOKEN Ãâ‚¬ÃŽÂ¿Ãâ€¦ ÃÆ’ÃŽÂ¿Ãâ€¦ ÃŽÂ­ÃŽÂ´Ãâ€°ÃÆ’ÃŽÂµ ÃŽÂ¿ BotFather

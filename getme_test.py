@@ -1,4 +1,4 @@
-﻿import requests
+import requests
 
 TOKEN = "1837395252:AAHvPLfJECS5zGvFuYjeBEFmwGm5g0HSq0I"
 

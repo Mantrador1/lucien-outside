@@ -1,4 +1,4 @@
-﻿import requests
+import requests
 import time
 
 # ÃŽÂ¦ÃÅ’ÃÂÃâ€žÃâ€°ÃÆ’ÃŽÂ· ÃÂÃâ€¦ÃŽÂ¸ÃŽÂ¼ÃŽÂ¯ÃÆ’ÃŽÂµÃâ€°ÃŽÂ½ ÃŽÂ±Ãâ‚¬ÃÅ’ lucien.cfg

@@ -1,4 +1,4 @@
-﻿import requests
+import requests
 
 PROXY_URL = "https://lucien-proxy-production.up.railway.app/ask"
 

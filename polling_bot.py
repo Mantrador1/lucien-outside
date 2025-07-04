@@ -1,4 +1,4 @@
-﻿import os
+import os
 import telebot
 
 BOT_TOKEN = os.getenv("TELEGRAM_TOKEN", "????_??O_??_TOKEN")

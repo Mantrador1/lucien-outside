@@ -1,4 +1,4 @@
-﻿import os
+import os
 import time
 import hashlib
 from webdav3.client import Client

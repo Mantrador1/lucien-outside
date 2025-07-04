@@ -1,4 +1,4 @@
-﻿import base64
+import base64
 
 parts = [
     "lucienx_part1.txt",
