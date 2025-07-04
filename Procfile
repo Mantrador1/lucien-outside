@@ -1,1 +1,1 @@
-web: gunicorn main:app --bind 0.0.0.0:8080
+﻿web: python3 main.py
