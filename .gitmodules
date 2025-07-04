@@ -5,7 +5,3 @@
 [submodule "lucien-outside"]
     path = lucien-outside
     url = https://github.com/Mantrador1/lucien-outside.git
-
-[submodule "lucien_proxy_web"]
-    path = lucien_proxy_web
-    url = https://github.com/Mantrador1/lucien_proxy_web.git
