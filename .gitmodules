@@ -1,4 +1,4 @@
-﻿[submodule "lucien_proxy_api"]
+
     path = lucien_proxy_api
     url = https://github.com/Mantrador1/lucien_proxy_api.git
 
