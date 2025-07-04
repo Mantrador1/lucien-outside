@@ -1,9 +1,13 @@
-﻿from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
+
 app = Flask(__name__)
+
 @app.route("/ask", methods=["POST"])
 def ask():
     data = request.get_json()
     prompt = data.get("prompt", "")
-    return jsonify({"response": f"🤖 Ερώτηση: {prompt}"})
+    response = f"?? Lucien ed? � �?? e?pe?: '{prompt}'"
+    return jsonify({"response": response})
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    import os`nport = int(os.getenv("PORT", 0))`napp.run(host="0.0.0.0", port=port)
