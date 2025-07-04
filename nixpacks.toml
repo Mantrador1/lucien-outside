@@ -1,19 +1,8 @@
-﻿[packages]
-python = { version = "3.8" }
+﻿[phases.setup]
+aptPkgs = ["python3", "python3-pip"]
 
-[builders.mybuilder.env]
-PYTHON_VERSION = "3.8"
+[phases.build]
+cmds = ["pip3 install -r requirements.txt"]
 
-[builders.mybuilder.commands]
-before-build = "pip install --upgrade pip"
-before-build = "pip install -r requirements.txt"
-before-deploy = "py_compile main.py"
+[start]
 cmd = "python3 main.py"
-
-[procs]
-app = {
-  cmd = "python3 main.py",
-  ports = [80],
-  entrypoints = { http = 80 }
-}
-
