@@ -3,41 +3,34 @@ import requests
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-OPENROUTER_API_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions"
 
-@app.route('/ask', methods=['POST'])
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+OPENROUTER_URL = "https://104.21.89.17/v1/chat/completions"
+HEADERS = {
+    "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+    "Content-Type": "application/json"
+}
+
+@app.route("/ask", methods=["POST"])
 def ask():
-    if not request.is_json:
-        return jsonify({'error': 'Invalid JSON payload'}), 400
-
     data = request.get_json()
-    prompt = data.get('prompt')
+    prompt = data.get("prompt", "")
     if not prompt:
-        return jsonify({'error': 'No prompt provided.'}), 400
+        return jsonify({"response": "❌ No prompt provided"}), 400
 
-    api_key = os.getenv('OPENROUTER_API_KEY')
-    if not api_key:
-        return jsonify({'error': 'OPENROUTER_API_KEY not set.'}), 503
+    try:
+        payload = {
+            "model": "openchat/openchat-3.5-0106",
+            "messages": [{"role": "user", "content": prompt}]
+        }
+        response = requests.post(OPENROUTER_URL, headers=HEADERS, json=payload)
+        response.raise_for_status()
+        result = response.json()
+        content = result["choices"][0]["message"]["content"]
+        return jsonify({"response": content})
 
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {api_key}'
-    }
+    except Exception as e:
+        return jsonify({"response": f"⚠️ Error: {str(e)}"}), 500
 
-    payload = {
-        'model': 'gpt-3.5-turbo',
-        'messages': [{'role': 'user', 'content': prompt}]
-    }
-
-    response = requests.post(OPENROUTER_API_ENDPOINT, headers=headers, json=payload)
-
-    if response.status_code != 200:
-        return jsonify({'error': f'OpenRouter error {response.status_code}', 'details': response.text}), 502
-
-    result = response.json()
-    reply = result.get('choices', [{}])[0].get('message', {}).get('content', '')
-
-    return jsonify({'response': reply})
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
