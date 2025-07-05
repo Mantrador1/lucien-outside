@@ -1,0 +1,100 @@
+﻿[2m2025-07-05T07:19:27Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]ModuleNotFoundError: No module named 'langdetect'
+[2m2025-07-05T07:19:28Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Main child exited normally with code: 1
+[2m2025-07-05T07:19:28Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting clean up.
+[2m2025-07-05T07:19:28Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][33m WARN[0m could not unmount /rootfs: EINVAL: Invalid argument
+[2m2025-07-05T07:19:28Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][    2.911220] reboot: Restarting system
+[2m2025-07-05T07:19:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025-07-05T07:19:47.008069593 [01JZCQ6KPCJXW9R04B5SCD6JT4:main] Running Firecracker v1.7.0
+[2m2025-07-05T07:19:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting init (commit: d0572327e)...
+[2m2025-07-05T07:19:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Preparing to run: `python main.py` as root
+[2m2025-07-05T07:19:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m [fly api proxy] listening at /.fly/api
+[2m2025-07-05T07:19:48Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Machine started in 1.347s
+[2m2025-07-05T07:19:48Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025/07/05 07:19:48 INFO SSH listening listen_address=[fdaa:20:27fd:a7b:3fa:392b:b2dc:2]:22
+[2m2025-07-05T07:19:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]Traceback (most recent call last):
+[2m2025-07-05T07:19:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]  File "/app/main.py", line 4, in <module>
+[2m2025-07-05T07:19:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]    import langdetect
+[2m2025-07-05T07:19:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]ModuleNotFoundError: No module named 'langdetect'
+[2m2025-07-05T07:19:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Main child exited normally with code: 1
+[2m2025-07-05T07:19:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting clean up.
+[2m2025-07-05T07:19:50Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][33m WARN[0m could not unmount /rootfs: EINVAL: Invalid argument
+[2m2025-07-05T07:19:50Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][    2.907198] reboot: Restarting system
+[2m2025-07-05T07:20:32Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025-07-05T07:20:32.872182237 [01JZCQ6KPCJXW9R04B5SCD6JT4:main] Running Firecracker v1.7.0
+[2m2025-07-05T07:20:33Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting init (commit: d0572327e)...
+[2m2025-07-05T07:20:33Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Preparing to run: `python main.py` as root
+[2m2025-07-05T07:20:33Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m [fly api proxy] listening at /.fly/api
+[2m2025-07-05T07:20:34Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Machine started in 1.379s
+[2m2025-07-05T07:20:34Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025/07/05 07:20:34 INFO SSH listening listen_address=[fdaa:20:27fd:a7b:3fa:392b:b2dc:2]:22
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]Traceback (most recent call last):
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]  File "/app/main.py", line 4, in <module>
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]    import langdetect
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]ModuleNotFoundError: No module named 'langdetect'
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Main child exited normally with code: 1
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting clean up.
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][33m WARN[0m could not unmount /rootfs: EINVAL: Invalid argument
+[2m2025-07-05T07:20:35Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][    2.917990] reboot: Restarting system
+[2m2025-07-05T07:20:36Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]machine has reached its max restart count of 10
+[2m2025-07-05T07:23:04Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Pulling container image registry.fly.io/lucien-outside@sha256:61dfd7ee862ebe998c642bf7d1196dc9599bf428f3f99fcc0d83006b858ca189
+[2m2025-07-05T07:23:16Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Successfully prepared image registry.fly.io/lucien-outside@sha256:61dfd7ee862ebe998c642bf7d1196dc9599bf428f3f99fcc0d83006b858ca189 (11.997879214s)
+[2m2025-07-05T07:23:17Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Configuring firecracker
+[2m2025-07-05T07:23:18Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025-07-05T07:23:18.655623891 [01JZCQF6YBZH6ZRMEZB5KVM7FD:main] Running Firecracker v1.7.0
+[2m2025-07-05T07:23:19Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting init (commit: d0572327e)...
+[2m2025-07-05T07:23:19Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Preparing to run: `python main.py` as root
+[2m2025-07-05T07:23:19Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m [fly api proxy] listening at /.fly/api
+[2m2025-07-05T07:23:19Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Machine created and started in 15.234s
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025/07/05 07:23:20 INFO SSH listening listen_address=[fdaa:20:27fd:a7b:3fa:392b:b2dc:2]:22
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m] * Serving Flask app 'main'
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m] * Debug mode: off
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m] * Running on all addresses (0.0.0.0)
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m] * Running on http://127.0.0.1:8080
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m] * Running on http://172.19.12.186:8080
+[2m2025-07-05T07:23:20Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][33mPress CTRL+C to quit[0m
+[2m2025-07-05T07:32:43Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]172.16.12.186 - - [05/Jul/2025 07:32:43] "GET / HTTP/1.1" 200 -
+[2m2025-07-05T11:10:33Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Pulling container image registry.fly.io/lucien-outside@sha256:0b66538be95257dfc0fbb5349f3a3141c78e1c30ba6eb81355ebd0ef14e320d0
+[2m2025-07-05T11:10:45Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Successfully prepared image registry.fly.io/lucien-outside@sha256:0b66538be95257dfc0fbb5349f3a3141c78e1c30ba6eb81355ebd0ef14e320d0 (11.657148588s)
+[2m2025-07-05T11:10:46Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Configuring firecracker
+[2m2025-07-05T11:10:46Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Sending signal SIGINT to main child process w/ PID 630
+[2m2025-07-05T11:10:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Main child exited normally with code: 0
+[2m2025-07-05T11:10:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting clean up.
+[2m2025-07-05T11:10:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][33m WARN[0m could not unmount /rootfs: EINVAL: Invalid argument
+[2m2025-07-05T11:10:47Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][13648.229575] reboot: Restarting system
+[2m2025-07-05T11:10:48Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025-07-05T11:10:48.138924558 [01JZD4FQY7FD7MDKW2A2DY9HVN:main] Running Firecracker v1.7.0
+[2m2025-07-05T11:10:48Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting init (commit: d0572327e)...
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Preparing to run: `python main.py` as root
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m [fly api proxy] listening at /.fly/api
+[2m2025-07-05T11:10:49Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Machine created and started in 15.872s
+[2m2025-07-05T11:10:49Z[0m health[7840076ce9e978] [32mfra[0m [[33mwarn[0m]Health check on port 8080 is in a 'warning' state. Your app may not be responding properly. Services exposed on ports [80, 443] may have intermittent failures until the health check passes.
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025/07/05 11:10:49 INFO SSH listening listen_address=[fdaa:20:27fd:a7b:3fa:392b:b2dc:2]:22
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]Traceback (most recent call last):
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]  File "/app/main.py", line 2, in <module>
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]    from router import route_request
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]  File "/app/router.py", line 36
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]    if 'I can∩┐╜t' in response or 'I∩┐╜m afraid' in response or 'I won∩┐╜t' in response:
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]               ^^
+[2m2025-07-05T11:10:49Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]SyntaxError: (unicode error) 'utf-8' codec can't decode byte 0x92 in position 5: invalid start byte
+[2m2025-07-05T11:10:50Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Main child exited normally with code: 1
+[2m2025-07-05T11:10:50Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting clean up.
+[2m2025-07-05T11:10:50Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][33m WARN[0m could not unmount /rootfs: EINVAL: Invalid argument
+[2m2025-07-05T11:10:50Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][    1.911386] reboot: Restarting system
+[2m2025-07-05T11:10:50Z[0m health[7840076ce9e978] [32mfra[0m [[31merror[0m]Health check on port 8080 has failed. Your app is not responding properly. Services exposed on ports [80, 443] will have intermittent failures until the health check passes.
+[2m2025-07-05T11:10:51Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025-07-05T11:10:51.322051673 [01JZD4FQY7FD7MDKW2A2DY9HVN:main] Running Firecracker v1.7.0
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting init (commit: d0572327e)...
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Preparing to run: `python main.py` as root
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m [fly api proxy] listening at /.fly/api
+[2m2025-07-05T11:10:52Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Machine started in 1.55s
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025/07/05 11:10:52 INFO SSH listening listen_address=[fdaa:20:27fd:a7b:3fa:392b:b2dc:2]:22
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]Traceback (most recent call last):
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]  File "/app/main.py", line 2, in <module>
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]    from router import route_request
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]  File "/app/router.py", line 36
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]    if 'I can∩┐╜t' in response or 'I∩┐╜m afraid' in response or 'I won∩┐╜t' in response:
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]               ^^
+[2m2025-07-05T11:10:52Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]SyntaxError: (unicode error) 'utf-8' codec can't decode byte 0x92 in position 5: invalid start byte
+[2m2025-07-05T11:10:53Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Main child exited normally with code: 1
+[2m2025-07-05T11:10:53Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting clean up.
+[2m2025-07-05T11:10:53Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][33m WARN[0m could not unmount /rootfs: EINVAL: Invalid argument
+[2m2025-07-05T11:10:53Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][    1.924133] reboot: Restarting system
+[2m2025-07-05T11:10:54Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m]2025-07-05T11:10:54.526921725 [01JZD4FQY7FD7MDKW2A2DY9HVN:main] Running Firecracker v1.7.0
+[2m2025-07-05T11:10:55Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Starting init (commit: d0572327e)...
+[2m2025-07-05T11:10:55Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m Preparing to run: `python main.py` as root
+[2m2025-07-05T11:10:55Z[0m app[7840076ce9e978] [32mfra[0m [[34minfo[0m][32m INFO[0m [fly api proxy] listening at /.fly/api
+[2m2025-07-05T11:10:55Z[0m runner[7840076ce9e978] [32mfra[0m [[34minfo[0m]Machine started in 1.425s

@@ -22,3 +22,10 @@ app = "lucien-outside"
     type = "connections"
     soft_limit = 25
     hard_limit = 50
+[[services.http_checks]]
+  interval = '10s'
+  timeout = '2s'
+  grace_period = '5s'
+  method = 'get'
+  path = '/health'
+  protocol = 'http'
