@@ -35,3 +35,6 @@ if __name__ == "__main__":
 @app.route('/healthz')
 def healthz():
     return 'OK', 200
+
+from dotenv import load_dotenv
+load_dotenv()
