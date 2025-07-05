@@ -29,3 +29,9 @@ def ask():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+
+
+# ✅ Health check endpoint
+@app.route('/healthz')
+def healthz():
+    return 'OK', 200
